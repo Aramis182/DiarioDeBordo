@@ -1,0 +1,1014 @@
+/*
+// ===========================================
+// INÍCIO: ARQUIVO style.css COMPLETO (PASSO 4.C - REVISÃO FINAL)
+// ===========================================
+*/
+
+:root {
+    /* Variáveis de Tema (Padrão = Escuro) */
+    --font-sans: 'Inter', sans-serif;
+    --bg-gradient-from: #0f172a; /* slate-900 */
+    --bg-gradient-to: #1e293b;   /* slate-800 */
+    --bg-primary: #1e293b;      /* slate-800 (Fundo do Card Principal) */
+    --bg-secondary: #0f172a;    /* slate-900 (Fundo de Cards Internos) */
+    --bg-tertiary: #334155;     /* slate-700 (Inputs, botões) */
+    --bg-hover: #475569;        /* slate-600 (Hover de botões) */
+    --bg-disabled: #475569;     /* slate-600 */
+    --bg-input-readonly: #334155; /* slate-700 */
+    
+    --text-primary: #e2e8f0;    /* slate-200 (Branco principal) */
+    --text-secondary: #94a3b8;  /* slate-400 (Textos mais claros) */
+    --text-tertiary: #64748b;   /* slate-500 (Textos de hint) */
+    --text-placeholder: #94a3b8; /* slate-400 */
+    --text-on-color: #FFFFFF;   /* Texto em botões coloridos */
+    
+    --border-color: #334155;    /* slate-700 */
+    --border-color-light: #475569; /* slate-600 */
+
+    /* Cores de Destaque */
+    --color-cyan: #22d3ee;
+    --color-cyan-dark: #0e7490;
+    --color-green: #4ade80;
+    --color-amber: #fbbf24;
+    --color-red: #f87171;
+    --color-indigo: #818cf8;
+    --color-violet: #a78bfa;
+
+    /* Variáveis de Layout (Personalizáveis) */
+    --font-size-base: 16px; /* Padrão (1rem) */
+    --main-padding: 1.5rem; /* Padrão (p-6) */
+}
+
+/* // ===========================================
+// TEMA CLARO (Sua Paleta Bege/Azul)
+// ===========================================
+*/
+body.theme-light {
+    /* Cor de fundo (Gradiente de fora) */
+    --bg-gradient-from: #5b88a5;  /* SUA cor4 */
+    --bg-gradient-to: #243a69;    /* SUA cor3 */
+    
+    /* Cor do Card Principal (dentro) */
+    --bg-primary: #f4f4f2;       /* SUA cor5 */
+    
+    /* Cor dos Cards Internos (painéis, resumos) */
+    --bg-secondary: #d4cdc5;     /* SUA cor4 */
+    
+    /* Cor dos Inputs e Selects */
+    --bg-tertiary: #f4f4f2;       /* SUA cor5 (Branco/Bege claro, não cinza) */
+    
+    /* Cor de Hover (botões cinza, etc) */
+    --bg-hover: #d8d8c0;         /* SUA cor3 (Original) */
+    
+    /* Cor de Fundo de Inputs Desabilitados */
+    --bg-disabled: #e2e8f0;       /* (Neutro) */
+    --bg-input-readonly: #d4cdc5;  /* SUA cor4 */
+
+    /* Cor do Texto Principal (Preto) */
+    --text-primary: #000000;     /* SUA cor1 */
+    
+    /* Cor do Texto Secundário (Preto) */
+    --text-secondary: #000000;   /* SUA cor1 */
+    
+    /* Cor do Texto "Hint" (Azul escuro) */
+    --text-tertiary: #243a69;    /* SUA cor3 (Original) */
+    --text-placeholder: #5b88a5;  /* SUA cor4 (Original) */
+    
+    /* Texto em botões coloridos */
+    --text-on-color: #000000;    /* SUA cor1 (Preto) */
+
+    /* Cor das Bordas Principais */
+    --border-color: #d8d8c0;     /* SUA cor3 (Original) */
+    
+    /* Cor das Bordas Claras */
+    --border-color-light: #5b88a5;  /* SUA cor4 (Original) */
+
+    /* Cor de Destaque Principal (Azul Petróleo) */
+    --color-cyan: #1693a5;       /* SUA cor2 */
+    
+    /* Cor de Destaque Escura (para fundos de botões) */
+    --color-cyan-dark: #f4f4f2;  /* SUA cor5 (Original) */
+    
+    /* Cores de Status (Mantidas para consistência) */
+    --color-green: #22c55e;
+    --color-amber: #f59e0b;
+    --color-red: #ef4444;
+    --color-indigo: #6366f1;
+    --color-violet: #8b5cf6;
+}
+/* --- FIM DA SUA PALETA --- */
+
+
+/* --- ESTILOS DE LAYOUT DINÂMICOS --- */
+body {
+    font-size: var(--font-size-base); /* Controla o tamanho da fonte */
+}
+#main-content {
+    padding: var(--main-padding); /* Controla o espaçamento */
+}
+/* Classes de ajuste (usadas pelo JS) */
+.font-size-sm { --font-size-base: 14px; }
+.font-size-base { --font-size-base: 16px; }
+.font-size-lg { --font-size-base: 18px; }
+
+.padding-sm { --main-padding: 0.75rem; }
+.padding-base { --main-padding: 1.5rem; }
+.padding-lg { --main-padding: 2.5rem; }
+
+
+/* --- ESTILOS DE BASE (Usando Variáveis) --- */
+body {
+    font-family: var(--font-sans);
+    background: linear-gradient(135deg, var(--bg-gradient-from), var(--bg-gradient-to));
+    color: var(--text-primary);
+}
+::placeholder { 
+    color: var(--text-placeholder); 
+}
+
+.card {
+    background: var(--bg-primary);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+.theme-light .card {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.status-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+button:disabled, input:disabled, select:disabled { 
+    opacity: 0.5; 
+    cursor: not-allowed;
+    background-color: var(--bg-disabled);
+}
+
+.tab-button {
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+    color: var(--text-secondary);
+}
+.tab-button.active {
+    color: var(--color-cyan);
+    border-bottom-color: var(--color-cyan);
+}
+
+/* Inputs e Selects */
+input[type="text"],
+input[type="number"],
+input[type="datetime-local"],
+input[type="date"],
+select {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 8px; /* rounded-lg */
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--color-cyan);
+    box-shadow: 0 0 0 2px var(--color-cyan-dark);
+}
+input[type="date"] {
+    color-scheme: dark; /* Padrão */
+}
+.theme-light input[type="date"] {
+    color-scheme: light; /* Tema claro */
+}
+
+input:read-only,
+input[readonly] {
+    background-color: var(--bg-input-readonly);
+    opacity: 0.7;
+}
+
+/* Scrollbar */
+.scrollable-content::-webkit-scrollbar { width: 6px; }
+.scrollable-content::-webkit-scrollbar-track { background: var(--bg-secondary); }
+.scrollable-content::-webkit-scrollbar-thumb { background: var(--bg-hover); border-radius: 4px; }
+
+/* Animações (Sem mudança de tema) */
+.animate-pulse-title {color: #FFC100 !important; animation: pulse-title 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+@keyframes pulse-title {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.02); }
+}
+.animate-pulse-fast { animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+.highlight { transition: all 0.3s ease; }
+.highlight:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); }
+.fade-in { animation: fadeIn 0.5s ease-in-out; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Elementos Específicos */
+#importFileInput { display: none; }
+.servico-em-andamento { border-left: 4px solid var(--color-cyan); }
+.card-simple-pulse-blue.active {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+    animation: pulse-blue 2s infinite;
+}
+@keyframes pulse-blue {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* Cor do Input[type=color] */
+input[type="color"] {
+    -webkit-appearance: none; -moz-appearance: none; appearance: none;
+    width: 40px; height: 40px; padding: 0; border: none;
+    border-radius: 8px; cursor: pointer; background-color: transparent;
+}
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 8px; border: 1px solid var(--border-color);
+}
+input[type="color"]::-moz-color-swatch {
+    border-radius: 8px; border: 1px solid var(--border-color);
+}
+
+/* Metas (Barras, Abas) */
+.meta-progress-bar {
+    background-color: var(--bg-tertiary);
+    width: 100%; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 4px;
+}
+.meta-progress-fill {
+    height: 100%; background-color: var(--color-cyan); transition: width 0.5s ease-in-out;
+}
+.meta-tab-button, .gam-tab-button {
+    transition: all 0.3s ease; border-bottom: 2px solid transparent; color: var(--text-secondary);
+}
+.meta-tab-button.active, .gam-tab-button.active {
+    color: var(--color-cyan); border-bottom-color: var(--color-cyan); font-weight: 600;
+}
+.meta-sub-tab-button {
+    transition: all 0.3s ease; border-bottom: 2px solid transparent; color: var(--text-secondary);
+}
+.meta-sub-tab-button.active {
+    color: var(--color-indigo); border-bottom-color: var(--color-indigo); font-weight: 600;
+}
+
+/* Simulador de Amortização */
+.parcelas-list-modal {
+    max-height: 340px; overflow-y: auto; border: 1px solid var(--border-color);
+    padding: 8px; border-radius: 8px; margin-top: 8px; background: var(--bg-secondary);
+}
+.parcela-item {
+    display: flex; justify-content: space-between; padding: 10px; border-radius: 6px;
+    margin-bottom: 6px; background: var(--bg-primary); align-items: center;
+    border: 1px solid var(--border-color); transition: background-color 0.2s;
+}
+.parcela-item-left { display: flex; gap: 12px; align-items: center; }
+.parcela-meta { display: flex; flex-direction: column; }
+.parcela-item.selected {
+    background: #166534; border-color: #22c55e;
+}
+.simulador-charts canvas {
+    background: var(--bg-primary); border-radius: 8px;
+    padding: 8px; border: 1px solid var(--border-color);
+}
+.result-block-modal {
+    margin-top: 12px; padding: 12px; border-radius: 8px;
+    background: #1c2e1e; border-left: 4px solid #22c55e;
+}
+
+/* Alerta de Manutenção Pulsante (Passo 4.A) */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+@keyframes pulse-border-fast {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(251, 146, 60, 0); }
+}
+.pulse-fast { animation: pulse-border-fast 1.5s infinite; }
+@keyframes pulse-border-slow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.3); }
+    70% { box-shadow: 0 0 0 10px rgba(251, 146, 60, 0); }
+}
+.pulse-slow { animation: pulse-border-slow 3s infinite; }
+
+/* --- INÍCIO: MODIFICAÇÃO (PASSO 4.C - Visual Settings) --- */
+/* Botão de Rádio Personalizado */
+.theme-radio-label {
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px; /* rounded-lg */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: var(--bg-secondary);
+}
+.theme-radio-label:hover {
+    background-color: var(--bg-tertiary);
+}
+input[type="radio"]:checked + .theme-radio-label {
+    border-color: var(--color-cyan);
+    background-color: var(--color-cyan-dark);
+    color: var(--text-on-color); /* Texto usa a --text-on-color (preto) */
+}
+/* Correção para o texto primário no tema claro voltar ao preto */
+.theme-light input[type="radio"]:checked + .theme-radio-label .text-primary {
+    color: var(--text-on-color);
+}
+input[type="radio"] {
+    display: none; /* Esconde o rádio original */
+}
+
+
+/* // ===========================================
+// INÍCIO: CORREÇÃO TEMA CLARO (PASSO 4.C - Fix)
+// ===========================================
+*/
+
+/* Esta seção aplica as variáveis do TEMA CLARO */
+.theme-light .bg-slate-900 {
+    background-color: var(--bg-secondary); /* Usa sua cor #d4cdc5 */
+}
+.theme-light .bg-slate-800 {
+    background-color: var(--bg-primary); /* Usa sua cor #f4f4f2 */
+}
+.theme-light .bg-slate-700 {
+    background-color: var(--bg-tertiary); /* Usa sua cor de input (bege claro) */
+}
+.theme-light .bg-slate-700\/50 {
+    background-color: var(--bg-primary); 
+}
+.theme-light .hover\:bg-slate-700:hover {
+    background-color: var(--bg-hover); /* Usa sua cor #d8d8c0 */
+}
+.theme-light .hover\:bg-slate-600:hover {
+    background-color: var(--bg-hover); /* Usa sua cor #d8d8c0 */
+}
+.theme-light .bg-slate-600 {
+    background-color: var(--bg-disabled);
+}
+.theme-light .border-slate-700 {
+    border-color: var(--border-color);
+}
+.theme-light .border-slate-600 {
+    border-color: var(--border-color-light);
+}
+.theme-light .border-slate-700\/50 {
+    border-color: var(--border-color);
+}
+.theme-light .text-white { color: var(--text-primary); }
+.theme-light .text-slate-200 { color: var(--text-primary); }
+.theme-light .text-slate-300 { color: var(--text-primary); }
+.theme-light .text-slate-400 { color: var(--text-secondary); }
+.theme-light .text-slate-500 { color: var(--text-tertiary); }
+.theme-light .hover\:text-white:hover { color: var(--text-primary); }
+.theme-light .text-cyan-400 { color: var(--color-cyan); }
+.theme-light .text-cyan-300 { color: var(--color-cyan); }
+.theme-light .text-cyan-200 { 
+    color: var(--text-on-color);
+}
+.theme-light .bg-cyan-800 { 
+    background-color: var(--color-cyan-dark);
+}
+.theme-light .hover\:text-sky-400:hover { color: var(--color-cyan); }
+.theme-light .text-sky-400 { color: var(--color-cyan); }
+.theme-light .text-sky-300 { color: var(--color-cyan); }
+.theme-light .text-green-400 { color: var(--color-green); }
+.theme-light .text-green-300 { color: var(--color-green); }
+.theme-light .text-amber-400 { color: var(--color-amber); }
+.theme-light .text-amber-300 { color: var(--color-amber); }
+.theme-light .text-red-400 { color: var(--color-red); }
+.theme-light .text-violet-400 { color: var(--color-violet); }
+.theme-light .text-indigo-400 { color: var(--color-indigo); }
+
+
+/* // ===========================================
+// INÍCIO: CORREÇÃO TEMA ESCURO/PERSONALIZADO (PASSO 4.E)
+// ===========================================
+*/
+
+/* Esta seção aplica as variáveis ao TEMA ESCURO (Padrão) e ao TEMA PERSONALIZADO */
+body:not(.theme-light) .bg-slate-900,
+body.theme-custom .bg-slate-900 {
+    background-color: var(--bg-secondary);
+}
+body:not(.theme-light) .bg-slate-800,
+body.theme-custom .bg-slate-800 {
+    background-color: var(--bg-primary);
+}
+body:not(.theme-light) .bg-slate-700,
+body.theme-custom .bg-slate-700 {
+    background-color: var(--bg-tertiary);
+}
+body:not(.theme-light) .bg-slate-700\/50,
+body.theme-custom .bg-slate-700\/50 {
+    background-color: var(--bg-secondary);
+    opacity: 0.7;
+}
+body:not(.theme-light) .hover\:bg-slate-700:hover,
+body.theme-custom .hover\:bg-slate-700:hover {
+    background-color: var(--bg-hover);
+}
+body:not(.theme-light) .hover\:bg-slate-600:hover,
+body.theme-custom .hover\:bg-slate-600:hover {
+    background-color: var(--bg-hover);
+}
+body:not(.theme-light) .bg-slate-600,
+body.theme-custom .bg-slate-600 {
+    background-color: var(--bg-disabled);
+}
+body:not(.theme-light) .border-slate-700,
+body.theme-custom .border-slate-700 {
+    border-color: var(--border-color);
+}
+body:not(.theme-light) .border-slate-600,
+body.theme-custom .border-slate-600 {
+    border-color: var(--border-color-light);
+}
+body:not(.theme-light) .border-slate-700\/50,
+body.theme-custom .border-slate-700\/50 {
+    border-color: var(--border-color);
+}
+body:not(.theme-light) .text-white,
+body.theme-custom .text-white { 
+    color: var(--text-primary); 
+}
+body:not(.theme-light) .text-slate-200,
+body.theme-custom .text-slate-200 { 
+    color: var(--text-primary); 
+}
+body:not(.theme-light) .text-slate-300,
+body.theme-custom .text-slate-300 { 
+    color: var(--text-primary); 
+}
+body:not(.theme-light) .text-slate-400,
+body.theme-custom .text-slate-400 { 
+    color: var(--text-secondary); 
+}
+body:not(.theme-light) .text-slate-500,
+body.theme-custom .text-slate-500 { 
+    color: var(--text-tertiary); 
+}
+body:not(.theme-light) .hover\:text-white:hover,
+body.theme-custom .hover\:text-white:hover { 
+    color: var(--text-primary); 
+}
+body:not(.theme-light) .text-cyan-400,
+body.theme-custom .text-cyan-400 { 
+    color: var(--color-cyan); 
+}
+body:not(.theme-light) .text-cyan-300,
+body.theme-custom .text-cyan-300 { 
+    color: var(--color-cyan); 
+}
+body:not(.theme-light) .hover\:text-sky-400:hover,
+body.theme-custom .hover\:text-sky-400:hover { 
+    color: var(--color-cyan); 
+}
+body:not(.theme-light) .text-sky-400,
+body.theme-custom .text-sky-400 { 
+    color: var(--color-cyan); 
+}
+body:not(.theme-light) .text-sky-300,
+body.theme-custom .text-sky-300 { 
+    color: var(--color-cyan); 
+}
+body:not(.theme-light) .text-cyan-200,
+body.theme-custom .text-cyan-200 {
+    color: var(--text-on-color);
+}
+body:not(.theme-light) .bg-cyan-800,
+body.theme-custom .bg-cyan-800 {
+    background-color: var(--color-cyan-dark);
+}
+
+/* // FIM: CORREÇÃO TEMA ESCURO
+// ===========================================
+*/
+
+
+/*
+// ===========================================
+// INÍCIO: MODIFICAÇÃO (PASSO 4.D - Tema Personalizado)
+// ===========================================
+*/
+
+/* Define a base do tema personalizado (Escuro) */
+body.theme-custom {
+    /* As cores personalizadas são injetadas aqui pelo JavaScript */
+}
+
+/* Estilo para os inputs de cor */
+.color-picker-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 60px; /* Tamanho maior */
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: transparent;
+}
+.color-picker-input::-webkit-color-swatch {
+    border-radius: 8px;
+    border: 2px solid var(--border-color-light);
+}
+.color-picker-input::-moz-color-swatch {
+    border-radius: 8px;
+    border: 2px solid var(--border-color-light);
+}
+
+/* // FIM: MODIFICAÇÃO (PASSO 4.D)
+// ===========================================
+*/
+
+/* === THEME FIX: Aplicação do tema Slate nos cards e seções === */
+
+.card,
+.summary-item,
+.estat-card,
+.servico-card,
+.info-block {
+    background: rgba(33, 41, 58, 0.65); /* bg-slate-800/65 */
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 16px;
+}
+
+/* Remover transparências que quebravam o tema */
+.section,
+.info-block,
+.estat-card,
+.servico-card {
+    background: rgba(33, 41, 58, 0.65) !important; /* força o tema */
+}
+
+/* Ajuste dos títulos dentro dos cards */
+.card h3,
+.summary-item h3,
+.estat-card h3,
+.servico-card h3 {
+    color: #e2e8f0; /* slate-200 */
+}
+/*
+// ===========================================
+// INÍCIO: SUPER-PASSO A (FINANCEIRO)
+// ===========================================
+*/
+.fin-tab-button {
+    transition: all 0.3s ease; border-bottom: 2px solid transparent; color: var(--text-secondary);
+}
+.fin-tab-button.active {
+    color: var(--color-cyan); border-bottom-color: var(--color-cyan); font-weight: 600;
+}
+/*
+// ===========================================
+// FIM: SUPER-PASSO A (FINANCEIRO)
+// ===========================================
+*/
+
+
+/*
+// ===========================================
+// INÍCIO: ETAPA 1 (Roadmap)
+// ===========================================
+*/
+
+#roadmapTimeline {
+    position: relative;
+    padding-left: 90px;  /* Mais espaço por causa da largura da estrada */
+}
+
+/* Linha pontilhada no centro da estrada */
+#roadmapTimeline::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        #fafafa 2px,
+        #1e293b 2px,
+        #1e293b 58px,
+        #fafafa 58px
+    );
+    border-radius: 10px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.5);
+}
+/* Estilo para a parte "futura" da estrada */
+#roadmapTimeline.future-road {
+    border-left-color: #334155; /* Cor mais escura (slate-700) */
+}
+#roadmapTimeline.future-road::before {
+    opacity: 0.3;
+}
+/* Faixa amarela pontilhada animada */
+#roadmapTimeline::after {
+    content: "";
+    position: absolute;
+    left: 43px;
+    top: 0;
+    bottom: 0; /* Garante que vai até o final */
+    width: 4px;
+    
+    /* Cria APENAS UM gomo da faixa: 
+       - De 0% a 42% é Amarelo (~12px)
+       - De 42% a 100% é Transparente (~16px) 
+    */
+    background-image: linear-gradient(
+        to bottom,
+        #facc15 0%, 
+        #facc15 42%, 
+        transparent 42%, 
+        transparent 100%
+    );
+    
+    /* Define o tamanho exato desse gomo: 4px largura x 28px altura */
+    background-size: 4px 28px;
+    
+    /* Manda o navegador repetir esse gomo infinitamente para baixo */
+    background-repeat: repeat-y;
+    
+    /* A animação apenas desliza o padrão */
+    animation: roadMove 0.8s linear infinite;
+    
+    border-radius: 2px;
+    opacity: 0.9;
+    
+    /* Otimização de performance para listas gigantes */
+    will-change: background-position;
+    transform: translateZ(0); 
+}
+@keyframes roadMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 28px; } /* 28px é a altura exata do padrão */
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem; /* Espaço entre os eventos */
+    padding: 0.75rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    height: 100%; /* Req 6: Alinhamento dos cards "Próximos Eventos" */
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* O ícone na estrada */
+.timeline-icon {
+    position: absolute;
+    left: -50px; /* (30px padding + 4px centro da estrada + 13px metade do ícone) */
+    top: 12px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--color-cyan);
+    color: var(--text-on-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--bg-primary);
+    z-index: 10;
+}
+
+/* Cores dos ícones por tipo */
+.timeline-icon.icon-fuel { background-color: var(--color-amber); }
+.timeline-icon.icon-service { background-color: var(--color-green); }
+.timeline-icon.icon-maintenance { background-color: var(--color-red); }
+.timeline-icon.icon-future { 
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+/* Ícones SVG (tamanho) */
+.timeline-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Conteúdo do balão */
+.timeline-content .item-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+.timeline-content .item-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+.timeline-content .item-meta {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    margin-top: 8px;
+}
+.timeline-content .item-meta span {
+    margin-right: 12px;
+}
+.timeline-content .item-value {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-amber);
+}
+.timeline-icon-card {
+    position: absolute;
+    bottom: 0.5rem; /* 8px */
+    right: 0.5rem; /* 8px */
+    width: 30px;
+    height: 30px;
+    opacity: 0.4;
+}
+.timeline-icon-card svg {
+    width: 30px;
+    height: 30px;
+    color: var(--text-tertiary);
+}
+.timeline-icon-card .emoji-icon {
+    font-size: 24px;
+    line-height: 30px;
+}
+.timeline-content .item-value.positive { color: var(--color-green); }
+.timeline-content .item-value.negative { color: var(--color-red); }
+.timeline-icon.icon-coin {
+    background-color: #facc15; /* Amarelo Ouro (yellow-400) */
+    color: #1e293b;            /* Cinza Escuro (slate-800) para o desenho da moeda */
+    border-color: #eab308;     /* Borda um pouco mais escura */
+}
+/*
+// ===========================================
+// FIM: ETAPA 1 (Roadmap)
+// ===========================================
+*/
+/* --- CORREÇÃO: BOLINHAS DA TIMELINE & MARCA D'ÁGUA --- */
+
+/* 1. O Card principal deve ter overflow VISÍVEL para a bolinha aparecer */
+.timeline-item {
+    overflow: visible !important; 
+    position: relative;
+}
+
+/* 2. Criamos uma 'máscara' interna que ocupa todo o card e corta o que sobra */
+.timeline-watermark-mask {
+    position: absolute;
+    inset: 0;           /* Enche todo o card */
+    overflow: hidden;   /* Corta o conteúdo excedente (marca d'água) */
+    border-radius: 12px; /* Deve bater com o border-radius do .card */
+    pointer-events: none;
+    z-index: 0;         /* Fica atrás do texto */
+}
+
+/* 3. Estilo da Marca D'água (Centralizada e Grande) */
+.timeline-icon-watermark {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.12;           /* Transparência suave */
+    transform: rotate(-15deg) scale(1.2); /* Inclinado e levemente ampliado */
+}
+
+/* Tamanho dos ícones SVG na marca d'água */
+.timeline-icon-watermark svg {
+    width: 100px;
+    height: 100px;
+    color: var(--text-secondary);
+}
+
+/* Tamanho dos Emojis na marca d'água */
+.timeline-icon-watermark .emoji-icon {
+    font-size: 100px;
+    line-height: 1;
+    filter: grayscale(100%);
+}
+
+/* Garante que o texto fique na frente da marca d'água */
+.timeline-content {
+    position: relative;
+    z-index: 1; 
+}
+/* --- AJUSTE ESPECÍFICO PARA ÍCONE DE CARRO (MARCA D'ÁGUA) --- */
+
+/* O padrão é rotacionado (-15deg), mas para o carro usamos 0deg */
+.timeline-icon-watermark.watermark-corrida {
+    transform: rotate(0deg) scale(1.2); /* Reto e grande */
+    opacity: 0.12; /* Mantém a transparência */
+}
+
+/* --- AJUSTES ESPECÍFICOS DE MARCA D'ÁGUA --- */
+
+/* Corrida (Carro): Reto e Grande */
+.timeline-icon-watermark.watermark-corrida {
+    transform: rotate(0deg) scale(1.2);
+    opacity: 0.12;
+}
+
+/* Abastecimento (Bomba): Reto e levemente deslocado para ficar estiloso */
+.timeline-icon-watermark.watermark-abastecimento {
+    transform: rotate(0deg) scale(1.1) translateY(10px);
+    opacity: 0.12;
+}
+
+/* Manutenção (Ferramenta): Levemente inclinada (padrão fica bom, mas pode forçar se quiser) */
+.timeline-icon-watermark.watermark-manutencao {
+    transform: rotate(-15deg) scale(1.2);
+    opacity: 0.10;
+}
+
+/* Gorjeta (Moeda): Reta */
+.timeline-icon-watermark.watermark-gorjeta {
+    transform: rotate(0deg) scale(1.3);
+    opacity: 0.15; /* Um pouco mais forte pq é amarelo */
+}
+/* --- MARCAS D'ÁGUA PREMIUM --- */
+
+/* Máscara para cortar o ícone dentro do card */
+.timeline-watermark-mask {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Estilo Base da Marca D'água */
+.timeline-icon-watermark {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.12;
+    transform: rotate(-15deg) scale(1.2);
+}
+
+/* Ícones SVG */
+.timeline-icon-watermark svg {
+    width: 100px;
+    height: 100px;
+    color: var(--text-secondary);
+}
+
+/* Emojis */
+.timeline-icon-watermark .emoji-icon {
+    font-size: 100px;
+    line-height: 1;
+    filter: grayscale(100%);
+}
+
+/* --- AJUSTES ESPECÍFICOS DE POSIÇÃO --- */
+
+/* Carro (Corrida): Reto */
+.timeline-icon-watermark.watermark-corrida {
+    transform: rotate(0deg) scale(1.2);
+    opacity: 0.12;
+}
+
+/* Bomba (Abastecimento): Reta e levemente descida */
+.timeline-icon-watermark.watermark-abastecimento {
+    transform: rotate(-15deg) scale(1.1) translateY(10px);
+    opacity: 0.12;
+}
+
+/* Moeda (Gorjeta): Reta */
+.timeline-icon-watermark.watermark-gorjeta {
+    transform: rotate(-15deg) scale(1.3);
+    opacity: 0.15;
+}
+/* Scrollbar e Rolagem Suave */
+.scrollable-content {
+    /* Garante que o scroll funcione no iOS e Android */
+    -webkit-overflow-scrolling: touch; 
+    overscroll-behavior: contain; /* Impede que role a página de trás */
+}
+
+.scrollable-content::-webkit-scrollbar { width: 6px; height: 6px; }
+.scrollable-content::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); }
+.scrollable-content::-webkit-scrollbar-thumb { background: var(--bg-hover); border-radius: 4px; }
+.scrollable-content::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+/* --- NOVO DESIGN DE CARDS DAS METAS (Caixinhas) --- */
+
+.meta-card {
+    background: linear-gradient(145deg, #1e293b, #0f172a); /* Degradê sutil */
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.meta-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+    border-color: rgba(34, 211, 238, 0.3); /* Brilho azul ao passar o mouse */
+}
+
+/* Ícone de Fundo (Marca D'água) */
+.meta-card-icon-bg {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    font-size: 5rem;
+    opacity: 0.05;
+    transform: rotate(15deg);
+    pointer-events: none;
+}
+
+/* Barra de Progresso Premium */
+.meta-progress-track {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 999px;
+    height: 8px;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.meta-progress-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Efeito de brilho animado na barra */
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 20px 20px;
+}
+
+/* Badges de Status */
+.meta-badge {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+/* Barras de Progresso */
+.bg-cyan-500   { background-color: #06b6d4 !important; }
+.bg-emerald-500 { background-color: #10b981 !important; }
+.bg-red-500    { background-color: #ef4444 !important; }
+.bg-orange-500 { background-color: #f97316 !important; }
+.bg-blue-500   { background-color: #3b82f6 !important; }
+.bg-amber-500  { background-color: #f59e0b !important; }
+
+/* Textos de Destaque */
+.text-cyan-400   { color: #22d3ee !important; }
+.text-emerald-400 { color: #34d399 !important; }
+.text-red-400    { color: #f87171 !important; }
+.text-orange-400 { color: #fb923c !important; }
+.text-blue-400   { color: #60a5fa !important; }
+.text-amber-400  { color: #fbbf24 !important; }
+.text-amber-300  { color: #fcd34d !important; } /* Usado no Custo Diário */
+
+/* Bordas e Fundos de Badges */
+.border-cyan-500\/30 { border-color: rgba(6, 182, 212, 0.3) !important; }
+.bg-cyan-500\/10     { background-color: rgba(6, 182, 212, 0.1) !important; }
+
+.border-orange-500\/30 { border-color: rgba(249, 115, 22, 0.3) !important; }
+.bg-orange-500\/10     { background-color: rgba(249, 115, 22, 0.1) !important; }
+
+.border-red-500\/30 { border-color: rgba(239, 68, 68, 0.3) !important; }
+.bg-red-500\/10     { background-color: rgba(239, 68, 68, 0.1) !important; }
+
+/* --- MODO SIMPLES (LITE) --- */
+body.modo-simples .recurso-pro {
+    display: none !important;
+}
+
+/* Esconde especificamente seções bancárias no modo simples */
+body.modo-simples #container-contas-bancarias,
+body.modo-simples #campo-conta-bancaria-wrapper, 
+body.modo-simples option[value="credito"],
+body.modo-simples option[value="debito"] {
+    display: none !important;
+}

@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Diário de Bordo v7.8</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f172a">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="data:application/manifest+json;base64,ew0KICAibmFtZSI6ICJEaVx1MDBlMXJpbyBkZSBCb3JkbyIsDQogICJzaG9ydF9uYW1lIjogIkRpXHUwMGUxcmlvIHY1IiwNCiAgImRlc2NyaXB0aW9uIjogIlN1YSBjZW50cmFsIGRlIGdlc3RcdTAwZTMvbyBwcm9maXNzaW9uYWwiLA0KICAiaWNvbnMiOiBbDQogICAgew0KICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2U1ZTJlOCI+PHBhdGggZD0iTTEyIDJDNi40NzcgMiAyIDYuNDc3IDIgMTJzNC40NzcgMTAgMTAgMTAgMTAtNC40NzcgMTAtMTBTMTcuNTIzIDIgMTIgMnptMCAyYzQuNDE4IDAgOCAzLjU4MiA4IDhzLTMuNTgyIDgtOCA4LTgtMy40NzcgMTAgMTAgMTAgMTAtNC40NzcgMTAtMTBTMTcuNTIzIDIgMTIgMnptMCAyYzQuNDE4IDAgOCAzLjU4MiA4IDhzLTMuNTgyIDgtOCA4LTgtMy41ODItOC04IDMuNTgyLTggOC04em0wIDVjLTEuNjU3IDAtMyAxLjM0My0zIDNzMS4zNDMgMyAzIDMgMy0xLjM0MyAzLTNzLTEuMzQzLTMtMy0zem01LjY1OCAxLjY1OGEuNS41IDAgMCAxIC42MzggMGwzIDRhLjUuNSAwIDAgMS0uMzE5LjgzOWgtM2EuNS41IDAgMCAxLS4zMTktLjgzOXpNMzMuM0NDMiAxMi42NThhLjUuNSAwIDAgMSAuMzE5LS44M2gzdjFoLTN6bTE0IDBoM3YtMWgtM3ptLTMuMzQyIDMuMzQyYS41LjUgMCAwIDEtLjMxOS44M2gtM2EuNS41IDAgMCAxLS4zMTktLjgzOWwzLTRhLjUuNSAwIDAgMSAuNjM4IDB6bS0xMS4zMTYgMGwzIDRhLjUuNSAwIDAgMCAuNjM4IDBsMy00YS41LjUgMCAwIDAtLjMxOS0uODM5aC0zYS41LjUgMCAwIDAtLjMxOS44Mzl6Ii8+PC9zdmc+">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+<link rel="stylesheet" href="style.css">
+   
+</head>
+<body id="main-body" class="min-h-screen flex items-center justify-center p-4">
+    <main id="main-content" class="w-full max-w-lg rounded-2xl shadow-2xl space-y-6 card">
+        
+        <div class="flex justify-between items-center text-center">
+            <div class="flex-1">
+                <h1 class="text-2xl font-bold text-cyan-400">Diário de Bordo Inteligente</h1>
+                <p class="text-slate-400 mt-1">Sua central de gestão profissional v7.5</p>
+            </div>
+            
+            <div class="flex items-center ml-4">
+            
+                <button id="btnAbrirVisualSettings" class="p-2 rounded-full text-slate-400 hover:bg-slate-700 transition duration-300" title="Personalizar Visual">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                </button>
+                <button id="btnToggleStatusView" class="p-2 rounded-full text-slate-400 hover:bg-slate-700 transition duration-300" title="Ocultar/Mostrar Painel">
+                </button>
+            </div>
+            </div>
+        
+        <div class="flex justify-center border-b border-slate-700 text-sm sm:text-base">
+            <button class="tab-button py-2 px-3 sm:px-4 font-semibold active" data-tab="jornada">Jornada</button>
+            <button class="tab-button py-2 px-3 sm:px-4 font-semibold" data-tab="dashboard">Dashboard</button>
+            
+            <button class="tab-button py-2 px-3 sm:px-4 font-semibold" data-tab="financeiro">Financeiro</button>
+            
+            <button class="tab-button py-2 px-3 sm:px-4 font-semibold" data-tab="manutencao">Manut.</button>
+            <button class="tab-button py-2 px-3 sm:px-4 font-semibold" data-tab="configuracoes">Config.</button>
+        </div>
+
+<div id="tab-content-jornada" class="space-y-6">
+
+    <details id="maintenanceAlertAccordion" class="bg-amber-900/80 border border-amber-600 rounded-lg hidden transition-all duration-300">
+        <summary id="maintenanceAlertSummary" class="p-3 cursor-pointer flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-300" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.332-.213 3.03-1.742 3.03H4.42c-1.53 0-2.493-1.698-1.742-3.03l5.58-9.92zM10 13a1 1 0 100-2 1 1 0 000 2zm-1-3a1 1 0 001 1h.01a1 1 0 100-2H10a1 1 0 00-1 1z" clip-rule="evenodd" />
+                </svg>
+                <h4 class="text-lg font-semibold text-amber-300">Avisos de Manutenção</h4>
+            </div>
+            <span class="text-xs text-amber-200">(Clique para expandir)</span>
+        </summary>
+        <div class="p-4 border-t border-amber-700/50">
+            <ul id="listaAlertasJornada" class="space-y-2"></ul>
+            <p class="text-xs text-center text-amber-300/80 mt-3">
+                Acesse a aba <b class="text-white">Manutenção > Saúde</b> para ver todos os itens.
+            </p>
+        </div>
+    </details>
+
+    <div id="contasRecorrentesAlertContainer" class="space-y-3">
+        <ul id="lista-contas-recorrentes-ul" class="space-y-2"></ul>
+    </div>
+
+    <div id="controlesOcultaveis" class="space-y-6">
+        <div id="painelControleJornada" class="p-4 bg-slate-900 rounded-lg space-y-4">
+            <div id="opcoesJornada" class="space-y-4">
+                <h3 class="text-lg font-semibold text-center text-slate-300">Controle da Jornada</h3>
+            </div>
+            
+            <div id="kmContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label for="kmInicialInput" class="block text-sm font-medium text-slate-300 mb-1">KM Inicial</label>
+                    <input type="number" id="kmInicialInput" placeholder="Ex: 15000" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white text-center focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                </div>
+                <div>
+                    <label for="kmFinalInput" class="block text-sm font-medium text-slate-300 mb-1">KM Final</label>
+                    <input type="number" id="kmFinalInput" placeholder="Ex: 15250" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white text-center focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                </div>
+            </div>
+            
+            <div id="metaContainer" class="hidden fade-in text-center">
+                <label for="metaHorasInput" class="block text-sm font-medium text-slate-300 mb-1">Definir Meta de Horas para Hoje</label>
+                <input type="number" id="metaHorasInput" min="0" step="0.5" placeholder="Ex: 8" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white text-center focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                <p id="metaHoraResultado" class="text-xs text-slate-400 mt-2"></p>
+            </div>
+
+            <div id="controlesJornadaContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button id="btnJornada" onclick="event.stopPropagation(); UIRenderer.handleJornada()" class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center gap-2 highlight">
+                    Iniciar Jornada
+                </button>
+                <button id="btnPausa" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center gap-2 highlight">
+                    Pausa
+                </button>
+            </div>
+        </div>
+
+        <div id="statusContainer" class="status-card bg-slate-900 p-4 rounded-lg text-center space-y-2 hidden fade-in">
+            <div class="flex justify-around items-center">
+                <div>
+                    <h2 class="text-sm font-medium text-slate-400 uppercase tracking-wider">Jornada</h2>
+                    <p id="tempoJornada" class="text-2xl font-bold text-green-400">00:00:00</p>
+                </div>
+                <div id="statusPausa" class="hidden">
+                    <h2 class="text-sm font-medium text-slate-400 uppercase tracking-wider">Em Pausa</h2>
+                    <p id="tempoPausa" class="text-2xl font-bold text-amber-400">00:00:00</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="alertaCombustivelContainer" class="hidden space-y-4 fade-in"></div>
+
+        <div id="servicosManager" class="hidden space-y-4 fade-in">
+            <div id="formIniciarServico" class="space-y-4 p-4 bg-slate-900 rounded-lg">
+                <h3 class="text-lg font-semibold text-center text-slate-300">Iniciar Novo Serviço</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="valorServico" class="block text-sm font-medium text-slate-300 mb-1">Valor (R$)</label>
+                        <input type="text" inputmode="decimal" id="valorServico" placeholder="Ex: 35,50" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                    </div>
+                    <div>
+                        <label for="categoriaServico" class="block text-sm font-medium text-slate-300 mb-1">Categoria</label>
+                        <select id="categoriaServico" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                            <option>Corrida</option>
+                            <option>Entrega</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="subcategoriaServicoContainer" class="hidden">
+                    <label for="subcategoriaServico" class="block text-sm font-medium text-slate-300 mb-1">Subcategoria</label>
+                    <select id="subcategoriaServico" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                    </select>
+                </div>
+                <div>
+                    <label for="descricaoServico" class="block text-sm font-medium text-slate-300 mb-1">Descrição (Opcional)</label>
+                    <input type="text" id="descricaoServico" placeholder="Ex: Cliente do centro (Segure 3s p/ limpar)" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                </div>
+                <div>
+                    <label for="kmInicialServicoInput" class="block text-sm font-medium text-slate-300 mb-1">KM Inicial Serviço (Opc.)</label>
+                    <input type="number" id="kmInicialServicoInput" placeholder="KM atual" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button id="btnIniciarServico" class="w-full bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300 highlight">Iniciar Serviço</button>
+                    <button id="btnServicoRapido" class="w-full bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300 highlight">Serviço Rápido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button type="button" id="btnMostrarCustos" class="w-full sm:w-auto bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300 highlight">
+            Registrar Custos Diários
+        </button>
+    </div>
+
+    <div id="custosContainer" class="hidden space-y-4 p-4 bg-slate-900 rounded-lg fade-in">
+        <h3 class="text-xl font-bold text-center text-amber-400">Controle de Custos Diários</h3>
+        <div class="space-y-3 p-3 bg-slate-800 rounded-md">
+            <h4 class="font-semibold text-slate-300">Abastecimento</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                    <label for="kmAbastecimentoInput" class="block text-xs font-medium text-slate-400 mb-1">KM Atual (Obrigatório p/ Média)</label>
+                    <input type="number" id="kmAbastecimentoInput" placeholder="Ex: 15150" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                </div>
+                <div>
+                    <label id="label-litros-restantes" for="litrosRestantesInput" class="block text-xs font-medium text-slate-400 mb-1">Litros Restantes no Tanque (Opc.)</label>
+                    <input type="text" inputmode="decimal" id="litrosRestantesInput" placeholder="Ex: 5,0" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                </div>
+                <div>
+                    <label for="litrosAbastecidos" class="block text-xs font-medium text-slate-400 mb-1">Litros (L)</label>
+                    <input type="text" inputmode="decimal" id="litrosAbastecidos" placeholder="Ex: 40,5" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                </div>
+                <div>
+                    <label for="valorAbastecido" class="block text-xs font-medium text-slate-400 mb-1">Valor Pago (R$)</label>
+                    <input type="text" inputmode="decimal" id="valorAbastecido" placeholder="Ex: 220,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                </div>
+            </div>
+            <div id="resumoAbastecimento" class="text-center text-sm text-slate-400 pt-2 space-y-2"></div>
+        </div>
+
+        <div class="space-y-3 p-3 bg-slate-800 rounded-md">
+            <h4 class="font-semibold text-slate-300">Outros Custos Variáveis</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                    <label for="descricaoCusto" class="block text-xs font-medium text-slate-400 mb-1">Descrição</label>
+                    <input type="text" id="descricaoCusto" placeholder="Ex: Café, Água" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                </div>
+                <div>
+                    <label for="valorCusto" class="block text-xs font-medium text-slate-400 mb-1">Valor (R$)</label>
+                    <input type="text" inputmode="decimal" id="valorCusto" placeholder="Ex: 15,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                </div>
+            </div>
+            <button id="btnAdicionarCusto" class="w-full mt-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300 highlight">Registrar Custo</button>
+        </div>
+
+        <div id="listaCustosContainer" class="p-3 bg-slate-800 rounded-md">
+             <h4 class="font-semibold text-slate-300 text-center mb-2">Custos Adicionados</h4>
+             <ul id="listaCustos" class="space-y-2 max-h-40 overflow-y-auto scrollable-content"></ul>
+        </div>
+    </div>
+
+    <div id="servicosEmAndamentoContainer" class="hidden space-y-2 p-4 bg-slate-900 rounded-lg border border-transparent transition-all duration-500 fade-in">
+        <h3 id="tituloServicosEmAndamento" class="text-lg font-semibold text-center text-amber-400">Serviços em Andamento</h3>
+        <ul id="listaServicosEmAndamento" class="space-y-3 max-h-60 overflow-y-auto p-1 scrollable-content"></ul>
+    </div>
+
+    <div class="space-y-3 pt-4 border-t border-slate-700">
+        <div class="flex items-center justify-between">
+            <button id="diaAnteriorBtn" class="p-2 rounded-full bg-slate-700 hover:bg-slate-600 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+            </button>
+            <h3 id="dataAtualHistorico" class="text-xl font-bold text-cyan-400"></h3>
+            <div class="flex items-center gap-2">
+                <button id="proximoDiaBtn" class="p-2 rounded-full bg-slate-700 hover:bg-slate-600 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+                </button>
+                <button id="btnAbrirCalculadora" class="p-2 rounded-full text-slate-400 hover:bg-cyan-800 hover:text-white transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2h-8zM9 4a1 1 0 011-1h8a1 1 0 011 1v12a1 1 0 01-1 1h-8a1 1 0 01-1-1V4z" /><path d="M3 8a1 1 0 011-1h2a1 1 0 110 2H4a1 1 0 01-1-1zM3 12a1 1 0 011-1h2a1 1 0 110 2H4a1 1 0 01-1-1zM3 16a1 1 0 011-1h2a1 1 0 110 2H4a1 1 0 01-1-1zM11.5 6.5a.5.5 0 01.5-.5h2a.5.5 0 010 1h-2a.5.5 0 01-.5-.5zM11 9a.5.5 0 000 1h2a.5.5 0 000-1h-2zM11 12a.5.5 0 000 1h2a.5.5 0 000-1h-2zM11 15a.5.5 0 000 1h2a.5.5 0 000-1h-2z" /></svg>
+                </button>
+                <button id="btnDownloadDia" class="p-2 rounded-full text-slate-400 hover:bg-green-800 hover:text-white transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                </button>
+                <button id="btnExcluirDia" class="p-2 rounded-full text-slate-400 hover:bg-red-800 hover:text-white transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                </button>
+            </div>
+        </div>
+        
+        <div id="resumoDia" class="bg-slate-900 p-4 rounded-lg text-center"></div>
+
+        <div id="lista-custos-fixos-container" class="hidden"></div>
+
+        <div id="historicoContainer" class="bg-slate-900 p-4 rounded-lg">
+            <div class="flex items-center justify-center relative mb-2">
+                <h3 id="tituloHistoricoCard" class="text-lg font-semibold text-center text-slate-300">Histórico do Dia</h3>
+                <button id="btnTogglePendentes" title="Alternar para Pagamentos Pendentes" class="absolute right-0 text-slate-400 hover:text-cyan-400 transition p-1 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </button>
+            </div>
+            <div id="historicoDiaContainer" class="max-h-60 overflow-y-auto scrollable-content">
+                <ul id="listaAtividades" class="space-y-3"></ul>
+            </div>
+            <div id="pendentesContainer" class="hidden max-h-60 overflow-y-auto scrollable-content">
+                <ul id="listaPendencias" class="space-y-3"></ul>
+            </div>
+            <button id="btnAbrirPromocoes" class="w-full mt-3 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition flex items-center justify-center gap-2">
+                <span>🎁</span> Campanhas & Incentivos
+            </button>
+        </div>
+
+        
+        
+    </div><div id="painel-financeiro-container"></div>
+</div>  
+        <div id="tab-content-dashboard" class="hidden space-y-6">
+            <div id="dashboardFilterContainer" class="p-4 bg-slate-900 rounded-lg space-y-4 cursor-pointer" title="Clique para ver o Roadmap">
+                <h3 class="text-xl font-bold text-center text-cyan-400">Análise de Desempenho</h3>
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <label for="selectDia" class="block text-sm font-medium text-slate-300 mb-1">Dia</label>
+                        <select id="selectDia" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition"></select>
+                    </div>
+                    <div>
+                        <label for="selectMes" class="block text-sm font-medium text-slate-300 mb-1">Mês</label>
+                        <select id="selectMes" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition"></select>
+                    </div>
+                    <div>
+                        <label for="selectAno" class="block text-sm font-medium text-slate-300 mb-1">Ano</label>
+                        <select id="selectAno" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="roadmapContainer" class="hidden p-4 bg-slate-900 rounded-lg space-y-6 max-h-[80vh] overflow-y-auto scrollable-content">
+                <h3 class="text-xl font-bold text-center text-cyan-400 sticky top-1 bg-slate-900 z-20 py-2">Roadmap do Veículo</h3>
+                
+                <div id="roadmapResumoFinanceiro" class="hidden bg-slate-800 rounded-lg p-1 shadow-lg transition-all">
+                    </div>
+
+                <div class="space-y-2">
+                    <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider border-b border-slate-700 pb-1">Próximos Eventos</h4>
+                    <div id="roadmapProximosEventos" class="space-y-3">
+                        </div>
+                </div>
+
+                <div class="pt-2">
+                    <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider border-b border-slate-700 pb-1 mb-4">Linha do Tempo</h4>
+                    
+                    <div id="roadmapTimeline" class="relative space-y-6 pl-4 ml-2 border-l-2 border-slate-700/50">
+                        </div>
+                </div>
+            </div>
+            <div id="dashboardResumoCards" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center"></div>
+
+            <div id="graficoGanhosCustosContainer" class="p-4 bg-slate-900 rounded-lg space-y-4">
+                <div class="flex items-center justify-center relative">
+                    <button id="btnVoltarDrillDown" class="absolute left-0 top-0 bg-slate-700 hover:bg-slate-600 text-white py-1 px-3 rounded-lg text-sm hidden">&larr; Voltar</button>
+                    <h4 id="tituloGraficoGanhosCustos" class="text-lg font-semibold text-center text-slate-300">Ganhos vs. Custos Diários</h4>
+                </div>
+                <canvas id="graficoGanhosCustos"></canvas>
+            </div>
+
+            <div id="graficoCustoCombustivelContainer" class="p-4 bg-slate-900 rounded-lg space-y-4">
+                <h4 class="text-lg font-semibold text-center text-slate-300">Custo Diário (Combustível/Energia)</h4>
+                <canvas id="graficoCustoCombustivel"></canvas>
+            </div>
+
+            <div id="graficoMediaKmLContainer" class="p-4 bg-slate-900 rounded-lg space-y-4">
+                <h4 id="tituloGraficoMediaKmL" class="text-lg font-semibold text-center text-slate-300">Média de Consumo (KmL)</h4>
+                <canvas id="graficoMediaKmL"></canvas>
+            </div>
+            
+            <div id="graficoMetasContainer" class="p-4 bg-slate-900 rounded-lg space-y-4 hidden">
+                <h4 class="text-lg font-semibold text-center text-slate-300">Progresso das Metas Financeiras</h4>
+                <canvas id="graficoMetasFinanceiras"></canvas>
+            </div>
+            
+            <div id="graficoCategoriasContainer" class="p-4 bg-slate-900 rounded-lg space-y-4">
+                <div class="flex items-center justify-center relative">
+                    <button id="btnVoltarGraficoCat" class="absolute left-0 top-0 bg-slate-700 hover:bg-slate-600 text-white py-1 px-3 rounded-lg text-sm hidden">&larr; Voltar</button>
+                    <h4 id="tituloGraficoCategorias" class="text-lg font-semibold text-center text-slate-300">Receita por Categoria</h4>
+                </div>
+                <div class="max-w-xs mx-auto">
+                    <canvas id="graficoCategorias"></canvas>
+                </div>
+            </div>
+
+            <div id="graficoCustosContainer" class="p-4 bg-slate-900 rounded-lg space-y-4">
+                <div class="flex items-center justify-center relative">
+                    <button id="btnVoltarGraficoCusto" class="absolute left-0 top-0 bg-slate-700 hover:bg-slate-600 text-white py-1 px-3 rounded-lg text-sm hidden">&larr; Voltar</button>
+                    <h4 id="tituloGraficoCustos" class="text-lg font-semibold text-center text-slate-300">Despesas por Categoria</h4>
+                </div>
+                <div class="max-w-xs mx-auto">
+                    <canvas id="graficoCustos"></canvas>
+                </div>
+            </div>
+            
+            <div id="graficoDrilldownContainer" class="hidden p-4 bg-slate-900 rounded-lg space-y-4 fade-in">
+                <div class="flex items-center justify-center relative">
+                    <button id="btnVoltarGraficoDrilldown" class="absolute left-0 top-0 bg-slate-700 hover:bg-slate-600 text-white py-1 px-3 rounded-lg text-sm">&larr; Voltar</button>
+                    <h4 id="tituloGraficoDrilldown" class="text-lg font-semibold text-center text-slate-300">Detalhamento Diário</h4>
+                </div>
+                <div class="relative">
+                    <canvas id="graficoDrilldown"></canvas>
+                </div>
+			<div id="graficoDrilldownKmContainer" class="hidden p-4 bg-slate-900 rounded-lg space-y-4 fade-in">
+                <div class="flex items-center justify-center relative">
+                    <h4 id="tituloGraficoDrilldownKm" class="text-lg font-semibold text-center text-slate-300">Detalhamento Diário (KM Produtivo)</h4>
+                </div>
+                <div class="relative">
+                    <canvas id="graficoDrilldownKm"></canvas>
+                </div>
+            </div>
+            </div>
+			
+        </div>
+
+        <div id="tab-content-manutencao" class="hidden">
+            <div class="space-y-6">
+                
+
+                <div class="flex justify-center border-b border-slate-700 text-sm sm:text-base">
+                
+                    <button class="gam-tab-button py-0 px-3 sm:px-4 font-semibold active" data-gam-tab="plano">
+                        Plano Mestre
+                    </button>
+                    <button class="gam-tab-button py-2 px-3 sm:px-4 font-semibold" data-gam-tab="historico">
+                        Histórico/Cotação
+                    </button>
+                    <button class="gam-tab-button py-2 px-3 sm:px-4 font-semibold" data-gam-tab="dashboard">
+                        Dashboard
+                    </button>
+                    <button class="gam-tab-button py-2 px-3 sm:px-4 font-semibold" data-gam-tab="alertas">
+                        Saúde
+                    </button>
+                </div>
+                <h3 class="text-1xl font-bold text-center text-cyan-400">Módulo de Gestão de Ativos (GAM)</h3>
+                <div id="gam-content-container" class="space-y-6">
+
+                    <div id="gam-tab-content-plano" class="gam-tab-pane space-y-4">
+<div class="p-4 bg-slate-900 rounded-lg space-y-3">
+    <h4 class="text-lg font-semibold text-slate-300">Novo Item do Plano</h4>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+            <label for="planoCategoriaSelect" class="block text-xs font-medium text-slate-400 mb-1">Categoria</label>
+            <select id="planoCategoriaSelect" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+                <option value="Motor">Motor 🟦</option>
+                <option value="Freios">Freios 🟩</option>
+                <option value="Suspensão">Suspensão 🟧</option>
+                <option value="Pneus">Pneus 🟥</option>
+                <option value="Arrefecimento">Arrefecimento 🟫</option>
+                <option value="Elétrico">Elétrico 🟪</option>
+                <option value="Transmissão">Transmissão ⚙️</option>
+                <option value="Ar-condicionado">Ar-condicionado 🟨</option>
+                <option value="Revisão Geral">Revisão Geral ⚪</option>
+                <option value="Outro">Outro ⚪</option>
+            </select>
+        </div>
+        <div>
+            <label for="planoAcaoSelect" class="block text-xs font-medium text-slate-400 mb-1">Ação Recomendada</label>
+            <select id="planoAcaoSelect" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+                <option value="Trocar">Trocar</option>
+                <option value="Verificar">Verificar</option>
+                <option value="Limpar">Limpar</option>
+                <option value="Ajustar">Ajustar/Regular</option>
+                <option value="Lubrificar">Lubrificar</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="sm:col-span-2">
+            <label for="planoDescricao" class="block text-xs font-medium text-slate-400 mb-1">Serviço / Peça</label>
+            <input type="text" id="planoDescricao" placeholder="Ex: Correia Dentada, Óleo 10W40" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+        </div>
+        <div>
+            <label for="planoCustoEstimado" class="block text-xs font-medium text-slate-400 mb-1">Custo Est. (R$)</label>
+            <input type="text" inputmode="decimal" id="planoCustoEstimado" placeholder="Ex: 350,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+            <label for="planoIntervaloKm" class="block text-xs font-medium text-slate-400 mb-1">Frequência (KM)</label>
+            <input type="number" id="planoIntervaloKm" placeholder="Ex: 40000" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+        </div>
+        <div>
+            <label for="planoIntervaloMeses" class="block text-xs font-medium text-slate-400 mb-1">Frequência (Meses) <span class="text-slate-500 text-xs">(Opcional)</span></label>
+            <input type="number" id="planoIntervaloMeses" placeholder="Ex: 24" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+        </div>
+    </div>
+    
+    <div>
+        <label for="planoObservacao" class="block text-xs font-medium text-slate-400 mb-1">Observação Crítica (Opcional)</label>
+        <input type="text" id="planoObservacao" placeholder="Ex: Se quebrar, o motor trava. Risco alto." class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+    </div>
+
+    <div>
+        <label for="planoMetaVinculada" class="block text-xs font-medium text-slate-400 mb-1">Vincular à "Caixinha" (Meta)</label>
+        <select id="planoMetaVinculada" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+            <option value="">Nenhuma (Recomendado vincular)</option>
+        </select>
+    </div>
+    
+    <button id="btnAdicionarPlano" class="w-full mt-2 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300 highlight">Adicionar ao Plano</button>
+</div>
+
+                        <div id="listaPlanoMestreContainer" class="p-4 bg-slate-900 rounded-lg space-y-3">
+                            <h4 class="text-lg font-semibold text-slate-300 text-center">Itens do Plano Mestre (<span id="planoCount">0</span>)</h4>
+                            <ul id="listaPlanoMestre" class="space-y-3 max-h-96 overflow-y-auto scrollable-content">
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="gam-tab-content-historico" class="gam-tab-pane space-y-4 hidden">
+                        <div class="space-y-6">
+                            <div class="p-4 bg-slate-900 rounded-lg space-y-3">
+                                <h4 class="text-lg font-semibold text-slate-300">Registrar Serviço Realizado</h4>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <label for="histData" class="block text-xs font-medium text-slate-400 mb-1">Data do Serviço</label>
+                                        <input type="date" id="histData" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+                                    </div>
+                                    <div>
+                                        <label for="histKm" class="block text-xs font-medium text-slate-400 mb-1">KM do Veículo</label>
+                                        <input type="number" id="histKm" placeholder="Ex: 155000" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="histPlanoMestreItem" class="block text-xs font-medium text-slate-400 mb-1">Vincular ao Plano Mestre (Recomendado)</label>
+                                    <select id="histPlanoMestreItem" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+                                        <option value="">Nenhum (Registrar Serviço Avulso)</option>
+                                        </select>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <label for="histCategoriaSelect" class="block text-xs font-medium text-slate-400 mb-1">Categoria</label>
+                                        <select id="histCategoriaSelect" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+                                            <option value="Motor">Motor 🟦</option>
+                                            <option value="Freios">Freios 🟩</option>
+                                            <option value="Suspensão">Suspensão 🟧</option>
+                                            <option value="Pneus">Pneus 🟥</option>
+                                            <option value="Arrefecimento">Arrefecimento 🟫</option>
+                                            <option value="Elétrico">Elétrico 🟪</option>
+                                            <option value="Ar-condicionado">Ar-condicionado 🟨</option>
+                                            <option value="Revisão Geral">Revisão Geral ⚪</option>
+                                            <option value="Outro">Outro ⚪</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="histServico" class="block text-xs font-medium text-slate-400 mb-1">Serviço / Peça Trocada</label>
+                                        <input type="text" id="histServico" placeholder="Ex: Troca de óleo e filtro" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label for="histLocal" class="block text-xs font-medium text-slate-400 mb-1">Local / Oficina (Opc.)</label>
+                                    <input type="text" id="histLocal" placeholder="Ex: Oficina do Zé" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <label for="histValor" class="block text-xs font-medium text-slate-400 mb-1">Valor Total Pago (R$)</label>
+                                        <input type="text" inputmode="decimal" id="histValor" placeholder="Ex: 350,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label for="histPagarComCaixinha" class="block text-xs font-medium text-slate-400 mb-1">Pagar com a "Caixinha"</label>
+                                        <select id="histPagarComCaixinha" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+                                            <option value="">Não usar (Lançar Custo Avulso)</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 mb-3 p-2 bg-slate-800/50 rounded-lg border border-slate-700">
+    <input type="checkbox" id="histRegistroRetroativo" class="h-5 w-5 rounded bg-slate-700 border-slate-600 text-cyan-600 focus:ring-cyan-500 cursor-pointer">
+    <div class="flex-1 cursor-pointer" onclick="document.getElementById('histRegistroRetroativo').click()">
+        <label class="block text-sm font-medium text-slate-300 cursor-pointer">Registro Retroativo / Apenas Histórico</label>
+        <span class="text-xs text-slate-500 block">Marque para registrar serviço antigo sem lançar saída no financeiro agora.</span>
+    </div>
+    <div class="text-amber-400 font-bold text-xl" title="Não gera débito na carteira">!</div>
+</div>
+                                <button id="btnAdicionarHistoricoServico" class="w-full mt-2 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300 highlight">Registrar Serviço</button>
+                                <p class="text-xs text-slate-500 text-center italic">
+                                    <b>Importante:</b> Se "Pagar com a Caixinha" for usado, este valor <b class="text-amber-400">não</b> será lançado como um novo custo no dia, pois ele já foi provisionado.
+                                </p>
+                            </div>
+
+                            <div id="listaHistoricoServicosContainer" class="p-4 bg-slate-900 rounded-lg space-y-3">
+                                <h4 class="text-lg font-semibold text-slate-300 text-center">Histórico de Serviços (<span id="historicoCount">0</span>)</h4>
+                                <ul id="listaHistoricoServicos" class="space-y-3 max-h-96 overflow-y-auto scrollable-content">
+                                    </ul>
+                            </div>
+                            
+                            <div class="p-4 bg-slate-900 rounded-lg space-y-3">
+                                <h4 class="text-lg font-semibold text-slate-300">Registrar Cotação (Orçamento)</h4>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <label for="cotaServico" class="block text-xs font-medium text-slate-400 mb-1">Serviço / Peça</label>
+                                        <input type="text" id="cotaServico" placeholder="Ex: 4 Pneus Novos (Marca X)" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label for="cotaLocal" class="block text-xs font-medium text-slate-400 mb-1">Local / Oficina</label>
+                                        <input type="text" id="cotaLocal" placeholder="Ex: PneuStore" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <label for="cotaValor" class="block text-xs font-medium text-slate-400 mb-1">Valor Orçado (R$)</label>
+                                        <input type="text" inputmode="decimal" id="cotaValor" placeholder="Ex: 2200,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label for="cotaValidade" class="block text-xs font-medium text-slate-400 mb-1">Validade (Opc.)</label>
+                                        <input type="date" id="cotaValidade" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+                                    </div>
+                                </div>
+                                
+                                <button id="btnAdicionarCota" class="w-full mt-2 bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300 highlight">Adicionar Cotação</label>
+                            </div>
+                            
+                            <div id="listaCotaContainer" class="p-4 bg-slate-900 rounded-lg space-y-3">
+                                <h4 class="text-lg font-semibold text-slate-300 text-center">Cotações Salvas (<span id="cotaCount">0</span>)</h4>
+                                <ul id="listaCota" class="space-y-3 max-h-96 overflow-y-auto scrollable-content">
+                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="gam-tab-content-dashboard" class="gam-tab-pane space-y-4 hidden">
+                        <div class="space-y-6">
+                            <div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                                <h4 class="text-xl font-bold text-center text-slate-300">Resumo de Custos por Categoria</h4>
+                                <div class="max-w-xs mx-auto">
+                                    <canvas id="gamDashboardChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div id="gamDashboardKpi" class="p-4 bg-slate-900 rounded-lg space-y-3 text-center">
+                                </div>
+                            
+                            <div id="gamDashboardSummary" class="p-4 bg-slate-900 rounded-lg space-y-3">
+                                </div>
+                        </div>
+                    </div>
+
+                    <div id="gam-tab-content-alertas" class="gam-tab-pane space-y-4 hidden">
+                        <div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                            <h4 class="text-xl font-bold text-center text-slate-300">Saúde do Veículo</h4>
+                            
+                            <div class="flex justify-center items-center h-48">
+                                <div id="gamHealthScoreGauge" class="relative w-48 h-48">
+                                    <div id="gamHealthScoreText" class="absolute inset-0 flex flex-col justify-center items-center">
+                                        </div>
+                                </div>
+                            </div>
+                            
+                            <p class="text-xs text-slate-500 text-center -mt-4">
+                                Esta pontuação é baseada no item de manutenção mais próximo do vencimento (por KM ou por Data).
+                            </p>
+                            <p id="gamHealthOdometerWarning" class="text-center text-amber-400 text-sm font-semibold hidden">
+                                Insira seu KM atual na aba "Jornada" para calcular a saúde.
+                            </p>
+                        </div>
+                        
+                        <div id="gamHealthItemsContainer" class="p-4 bg-slate-900 rounded-lg space-y-3">
+                            <h4 class="text-lg font-semibold text-slate-300 text-center">Itens do Plano Mestre</h4>
+                            <ul id="gamHealthItemsList" class="space-y-3 max-h-96 overflow-y-auto scrollable-content">
+                                </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    <div id="tab-content-financeiro" class="hidden space-y-6">
+            
+            <div class="flex justify-center border-b border-slate-700 text-sm sm:text-base">
+                <button class="fin-tab-button py-2 px-3 sm:px-4 font-semibold active" data-fin-tab="receita">Receita e Fluxo</button>
+                <button class="fin-tab-button py-2 px-3 sm:px-4 font-semibold" data-fin-tab="custos">Custos Operacionais</button>
+                <button class="fin-tab-button py-2 px-3 sm:px-4 font-semibold" data-fin-tab="bancos">Contas/Bancos</button>
+                <button class="fin-tab-button py-2 px-3 sm:px-4 font-semibold" data-fin-tab="relatorios">Relatórios</button>
+            </div>
+            <h3 class="text-xl font-bold text-center text-cyan-400">Módulo Financeiro</h3>
+            
+            <div id="fin-tab-content-receita" class="fin-tab-pane space-y-4">
+                
+                <div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                    <h3 class="text-xl font-bold text-center text-cyan-400">Metas Financeiras e Dívidas</h3>
+                    <p class="text-xs text-slate-500 text-center">Planeje guardar dinheiro (Poupança) ou dilua uma dívida (Dívida) no seu custo diário.</p>
+                    
+                    <div class="space-y-3 p-3 bg-slate-800 rounded-md">
+                    
+                        <div class="grid grid-cols-1 sm:grid-cols-1 gap-3">
+                            <div>
+                                <label for="metaDescricaoInput" class="block text-xs font-medium text-slate-400 mb-1">Descrição</label>
+                                <input type="text" id="metaDescricaoInput" placeholder="Ex: Fundo Manutenção, Pneu novo" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label for="metaTipoSelect" class="block text-xs font-medium text-slate-400 mb-1">Tipo</label>
+                                <select id="metaTipoSelect" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+                                    <option value="poupanca">Poupança (Guardar)</option>
+                                    <option value="parcelamento">Dívida (Pagar)</option>
+                                    <option value="poupanca_km">Poupança (R$ por KM)</option>
+                                </select>
+                            </div>
+                        <div>
+                                <label for="metaBancoVinculado" class="block text-xs font-medium text-slate-400 mb-1">Vincular à Conta/Banco</label>
+                                <select id="metaBancoVinculado" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white h-[42px]">
+                                    <option value="">Nenhuma (Caixinha Virtual)</option>
+                                    </select>
+                            </div>
+                        </div>
+                        
+                        <div class="grid  sm:grid-cols-2 gap-3">
+                            <div id="containerValorTotal">
+                                <label for="metaValorTotalInput" class="block text-xs font-medium text-slate-400 mb-1">Valor (R$)</label>
+                                <input type="text" inputmode="decimal" id="metaValorTotalInput" placeholder="Ex: 5000,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                            </div>
+                            
+                            <div id="containerValorObjetivo" class="hidden">
+                                <label for="metaValorObjetivoInput" class="block text-xs font-medium text-slate-400 mb-1">Valor Objetivo (R$)</label>
+                                <input type="text" inputmode="decimal" id="metaValorObjetivoInput" placeholder="Ex: 5000,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                            </div>
+                            <div id="containerDataVencimento" class="hidden">
+                                <label for="metaDataVencimentoInput" class="block text-xs font-medium text-slate-400 mb-1">Data de Vencimento</label>
+                                <input type="date" id="metaDataVencimentoInput" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+                            </div>
+                            
+                            <div id="containerPrazoMeses">
+                                <label for="metaPrazoMesesInput" class="block text-xs font-medium text-slate-400 mb-1">Prazo (Meses)</label>
+                                <input type="number" inputmode="numeric" id="metaPrazoMesesInput" placeholder="Ex: 12" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                            </div>
+            
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1 italic">Marque para Dívidas/Contas fixas. Desmarque para Poupanças Opcionais (só desconta no lucro do dia se for marcada no final).</p>
+                        <div class="flex items-center space-x-2 mt-4" id="containerIncluirCustoDiario">
+                                            
+                        <input type="checkbox" id="metaIncluirCustoDiarioCheckbox" checked class="form-checkbox h-4 w-4 text-cyan-500 bg-slate-700 border-slate-600 rounded focus:ring-cyan-500">
+                        <label for="metaIncluirCustoDiarioCheckbox" class="text-sm font-medium text-slate-300">Incluir como Custo Diário Operacional</label>
+
+                    </div>  <div id="containerJurosCheckbox" class="hidden flex items-center space-x-2 mt-4">
+        <input type="checkbox" id="metaJurosCheckbox" class="form-checkbox h-4 w-4 text-cyan-500 bg-slate-700 border-slate-600 rounded focus:ring-cyan-500">
+        <label for="metaJurosCheckbox" class="text-sm font-medium text-slate-300">Calcular Juros (Financiamento, Consórcio, etc.)</label>
+    </div>
+
+    <div id="containerTipoDivida" class="hidden space-y-3 p-3 bg-slate-800/50 rounded-md mt-3">
+        <label for="metaTipoDividaSelect" class="block text-xs font-medium text-slate-400 mb-1">Tipo de Dívida com Juros</label>
+        <select id="metaTipoDividaSelect" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+            <option value="financiamento">Financiamento</option>
+            <option value="emprestimo">Empréstimo</option>
+            <option value="consorcio">Consórcio (Guardar p/ Lance)</option>
+        </select>
+    </div>
+
+    <div id="containerConsorcio" class="hidden space-y-3 p-3 bg-slate-800/50 rounded-md mt-3">
+        <h5 class="text-sm font-semibold text-center text-cyan-400">Detalhes do Consórcio (Lance)</h5>
+        <div>
+            <label for="metaValorObjetivoConsorcioInput" class="block text-xs font-medium text-slate-400 mb-1">Valor Objetivo do Lance (R$)</label>
+            <input type="text" inputmode="decimal" id="metaValorObjetivoConsorcioInput" placeholder="Ex: 15000,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+        </div>
+    </div>
+                    
+    <div id="containerFinanciamento" class="hidden sm:grid-cols-1 space-y-4 p-3 bg-slate-800/50 rounded-md mt-1">
+        <h5 class="text-sm font-semibold text-center text-cyan-400">Detalhes do Financiamento/Dívida</h5>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+                <label for="metaValorFinanciadoInput" class="block text-xs font-medium text-slate-400 mb-1">Valor Financiado (R$)</label>
+                <input type="text" inputmode="decimal" id="metaValorFinanciadoInput" placeholder="Ex: 57000,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+            </div>
+            <div>
+                <label for="metaTaxaJurosAnualInput" class="block text-xs font-medium text-slate-400 mb-1">Taxa de Juros (% AO ANO) <span class="text-slate-500">(Automático)</span></label>
+                <input type="text" inputmode="decimal" id="metaTaxaJurosAnualInput" placeholder="Ex: 195,522" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+            </div>
+            </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+                <label for="metaTotalParcelasInput" class="block text-xs font-medium text-slate-400 mb-1">Nº Total de Parcelas</label>
+                <input type="number" inputmode="numeric" id="metaTotalParcelasInput" placeholder="Ex: 48" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+            </div>
+            <div>
+                <label for="metaValorParcelaInput" class="block text-xs font-medium text-slate-400 mb-1">Valor da Parcela (R$)</label>
+                <input type="text" inputmode="decimal" id="metaValorParcelaInput" placeholder="Ex: 1798.26" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+                <label for="metaDataInicioFinanciamentoInput" class="block text-xs font-medium text-slate-400 mb-1">Data da 1ª Parcela</label>
+                <input type="date" id="metaDataInicioFinanciamentoInput" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]" style="color-scheme: dark;">
+            </div>
+            <div>
+                <label for="metaMetodoAmortizacaoInput" class="block text-xs font-medium text-slate-400 mb-1">Sistema de Amortização</label>
+                <select id="metaMetodoAmortizacaoInput" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+                    <option value="price">Price (Parcelas Fixas)</option>
+                    <option value="sac">SAC (Amortização Constante)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+                        <div id="containerPoupanca" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div id="containerTaxaJuros">
+                                <label for="metaTaxaJurosInput" class="block text-xs font-medium text-slate-400 mb-1">Juros Anual % (Opc.)</label>
+                                <input type="text" inputmode="decimal" id="metaTaxaJurosInput" placeholder="Ex: 11,65" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                            </div>
+                            <div id="containerContribuicaoMensal">
+                                <label for="metaContribuicaoMensalInput" class="block text-xs font-medium text-slate-400 mb-1">Contribuição Mensal (R$)</label>
+                                <input type="text" inputmode="decimal" id="metaContribuicaoMensalInput" placeholder="Ex: 150,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                            </div>
+                            
+                        </div>
+                        
+                        <div id="containerPoupanca" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    </div>
+
+    <div id="containerPoupancaKm" class="hidden grid grid-cols-1 gap-3">
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label for="metaValorObjetivoInputKm" class="block text-xs font-medium text-slate-400 mb-1">Valor Objetivo (R$)</label>
+                                    <input type="text" inputmode="decimal" id="metaValorObjetivoInputKm" placeholder="Ex: 2500,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                                </div>
+                                <div>
+                                    <label for="metaDataVencimentoInputKm" class="block text-xs font-medium text-slate-400 mb-1">Data de Vencimento (Opc.)</label>
+                                    <input type="date" id="metaDataVencimentoInputKm" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]" style="color-scheme: dark;">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label for="metaTaxaJurosInputKm" class="block text-xs font-medium text-slate-400 mb-1">Juros Anual % (Opc.)</label>
+                                    <input type="text" inputmode="decimal" id="metaTaxaJurosInputKm" placeholder="Ex: 11,65" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                                </div>
+                                <div>
+                                    <label for="metaValorPorKmInput" class="block text-xs font-medium text-slate-400 mb-1">Valor a Guardar por KM (R$) <span class="text-slate-500 text-xs">(Ex: 0,166)</span></label>
+                                    <input type="text" inputmode="decimal" id="metaValorPorKmInput" placeholder="Ex: 0,166 (Automático se houver meta)" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                                </div>
+                            </div>
+                            
+                            <p id="hintPoupancaKm" class="text-xs text-slate-500 mt-1 italic">
+                                Preencha o Objetivo e Vencimento para calcular o R$/KM automaticamente (requer "KM Meta Diária" nas configs).
+                            </p>
+                        </div>              
+                        <div class="flex items-center space-x-2 mt-4" id="containerIncluirCustoDiario">
+                        
+                        <button id="btnAdicionarMeta" class="w-full mt-2 bg-gradient-to-r from-violet-600 to-violet-700 hover:from-violet-700 hover:to-violet-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300 highlight">Adicionar Meta/Dívida</button>
+                        <button id="btnSalvarEdicaoMeta" class="w-full mt-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300 highlight hidden">Salvar Edição</button>
+                        <button id="btnCancelarEdicaoMeta" class="w-full mt-2 bg-slate-500 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 highlight hidden">Cancelar Edição</button>
+                    </div>
+
+                    <div id="listaMetasFinanceirasContainer" class="p-3 bg-slate-800 rounded-md">
+                            <h4 class="font-semibold text-slate-300 text-center mb-2">Metas e Dívidas Adicionadas</h4>
+                            
+                            <div class="flex justify-center border-b border-slate-700 text-sm mb-2">
+                                <button class="meta-tab-button py-2 px-3 font-semibold active" data-meta-tab="ativas">Ativas</button>
+                                <button class="meta-tab-button py-2 px-3 font-semibold" data-meta-tab="manutencao">Custo Por KM</button>
+                                <button class="meta-tab-button py-2 px-3 font-semibold" data-meta-tab="concluidas">Concluídas</button>
+                            </div>
+                            </div>
+                            
+                            <div id="meta-tab-content-ativas" class="space-y-2 max-h-svh overflow-y-auto scrollable-content">
+                                <ul id="listaMetasAtivas" class="space-y-2"></ul>
+                            </div>
+
+                            <div id="meta-tab-content-manutencao" class="hidden space-y-2">
+                                <div class="flex justify-center border-b border-slate-600 text-xs mb-2">
+                                    <button class="meta-sub-tab-button py-1 px-2 font-semibold active" data-meta-sub-tab="plano_mestre">Plano Mestre</button>
+                                    <button class="meta-sub-tab-button py-1 px-2 font-semibold" data-meta-sub-tab="p_por_km">P. Por KM</button>
+                                    <button class="meta-sub-tab-button py-1 px-2 font-semibold" data-meta-sub-tab="concluido_manutencao">Concluído (Manut.)</button>
+                                </div>
+                                
+                                <div id="meta-sub-tab-content-plano_mestre" class="space-y-2 max-h-60 overflow-y-auto scrollable-content">
+                                    <ul id="listaMetasManutencaoPlano" class="space-y-2"></ul>
+                                </div>
+                                <div id="meta-sub-tab-content-p_por_km" class="hidden space-y-2 max-h-60 overflow-y-auto scrollable-content">
+                                    <ul id="listaMetasManutencaoKm" class="space-y-2"></ul>
+                                </div>
+                                <div id="meta-sub-tab-content-concluido_manutencao" class="hidden space-y-2 max-h-60 overflow-y-auto scrollable-content">
+                                    <ul id="listaMetasManutencaoConcluidas" class="space-y-2"></ul>
+                                </div>
+                            </div>
+                            
+                            <div id="meta-tab-content-concluidas" class="hidden space-y-2 max-h-60 overflow-y-auto scrollable-content">
+                                <ul id="listaMetasConcluidas" class="space-y-2"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            
+            
+            <div id="fin-tab-content-custos" class="fin-tab-pane space-y-4 hidden">
+                
+                <div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                    <h3 class="text-xl font-bold text-center text-amber-400">Custos Fixos Mensais</h3>
+                    <div class="space-y-3 p-3 bg-slate-800 rounded-md">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div>
+                                <label for="descricaoCustoFixo" class="block text-xs font-medium text-slate-400 mb-1">Descrição</label>
+                                <input type="text" id="descricaoCustoFixo" placeholder="Ex: Seguro, Financiamento" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label for="valorCustoFixo" class="block text-xs font-medium text-slate-400 mb-1">Valor Mensal (R$)</label>
+                                <input type="text" inputmode="decimal" id="valorCustoFixo" placeholder="Ex: 450,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                            </div>
+                            <div>
+                                <label for="vencimentoCustoFixo" class="block text-xs font-medium text-slate-400 mb-1">Dia Vencimento (1-31)</label>
+                                <input type="number" id="vencimentoCustoFixo" placeholder="Ex: 10" min="1" max="31" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                            </div>
+                        </div>
+                        <button id="btnAdicionarCustoFixo" class="w-full mt-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300 highlight">Adicionar Custo Fixo</button>
+                    </div>
+                <div id="listaCustosFixosContainer" class="p-3 bg-slate-800 rounded-md">
+                            <h4 class="font-semibold text-slate-300 text-center mb-2">Custos Fixos Adicionados</h4>
+                            <ul id="listaCustosFixos" class="space-y-2 max-h-40 overflow-y-auto scrollable-content"></ul>
+                        </div>
+                </div>
+
+           
+
+
+                <div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                    <h3 class="text-xl font-bold text-center text-amber-400">Contas Recorrentes (Boletos, Assinaturas)</h3>
+                    <p class="text-xs text-slate-500 text-center -mt-2">
+                        Cadastre contas (água, luz, Netflix) para receber lembretes de pagamento na aba "Jornada".
+                    </p>
+                    <div class="space-y-3 p-3 bg-slate-800 rounded-md">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div class="sm:col-span-2">
+                                <label for="conta-recorrente-descricao" class="block text-xs font-medium text-slate-400 mb-1">Descrição</label>
+                                <input type="text" id="conta-recorrente-descricao" placeholder="Ex: Conta de Luz, Netflix" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white">
+                            </div>
+                            <div>
+                                <label for="conta-recorrente-vencimento" class="block text-xs font-medium text-slate-400 mb-1">Dia Vencimento</label>
+                                <input type="number" id="conta-recorrente-vencimento" placeholder="Ex: 10" min="1" max="31" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                             <div>
+                                <label for="conta-recorrente-valor" class="block text-xs font-medium text-slate-400 mb-1">Valor (R$)</label>
+                                <input type="text" inputmode="decimal" id="conta-recorrente-valor" placeholder="Ex: 150,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white">
+                            </div>
+                             <div>
+                                <label for="conta-recorrente-categoria" class="block text-xs font-medium text-slate-400 mb-1">Categoria (p/ Livro-Caixa)</label>
+                                <select id="conta-recorrente-categoria" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white h-[42px]">
+                                    <option>Moradia</option>
+                                    <option>Transporte</option>
+                                    <option>Lazer</option>
+                                    <option>Saúde</option>
+                                    <option>Educação</option>
+                                    <option>Impostos</option>
+                                    <option>Outras Despesas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="btn-adicionar-conta-recorrente" class="w-full mt-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-bold py-2 px-4 rounded-lg transition highlight">Adicionar Conta Recorrente</button>
+                    </div>
+                    <div class="p-3 bg-slate-800 rounded-md">
+                        <h4 class="font-semibold text-slate-300 text-center mb-2">Contas Cadastradas</h4>
+                        <ul id="listaContasRecorrentes" class="space-y-2 max-h-40 overflow-y-auto scrollable-content"></ul>
+                    </div>
+                </div>
+               </div>  
+               
+
+        <div id="fin-tab-content-bancos" class="fin-tab-pane space-y-4 hidden">
+                        
+
+
+
+                       
+                        <div class="p-4 bg-slate-900 rounded-lg space-y-3">
+                            <h4 class="font-semibold text-slate-300 text-center mb-2">Contas Salvas</h4>
+                                                <div class="p-2 bg-slate-800 rounded-md flex justify-between items-center text-base mt-4">
+                                <span class="font-bold text-white">SALDO CONSOLIDADO</span>
+                                <span id="fin-saldo-consolidado" class="font-bold text-lg text-green-400">R$ 0,00</span>
+                            </div>
+                            <ul id="fin-modal-lista-contas" class="space-y-2 max-h-60 overflow-y-auto scrollable-content">
+                                <li class="text-center text-slate-500 italic text-sm">Nenhuma conta bancária criada.</li>
+                            </ul>
+
+                        </div>
+                                        <div class="p-4 bg-slate-900 rounded-lg space-y-3">
+                            <h4 class="text-lg font-semibold text-center text-slate-300">Movimentações Avulsas</h4>
+                            <p class="text-xs text-slate-500 text-center -mt-2">
+                                Registre pagamentos de boletos, PIX, saques ou depósitos que não são da jornada.
+                            </p>
+                            <button id="btn-abrir-nova-transacao" class="w-full mt-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-4 rounded-lg transition highlight">
+                                Registrar Nova Transação
+                            </button>
+                            
+                        </div>
+                        
+                        
+<div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                    <h4 class="text-lg font-semibold text-center text-slate-300">Adicionar Nova Conta</h4>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="fin-modal-nome-conta" class="block text-xs font-medium text-slate-400 mb-1">Nome da Conta/Cartão</label>
+                            <input type="text" id="fin-modal-nome-conta" placeholder="Ex: NuConta Pessoal" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white">
+                        </div>
+                        <div>
+                            <label for="fin-modal-tipo-conta" class="block text-xs font-medium text-slate-400 mb-1">Tipo de Conta</label>
+                            <select id="fin-modal-tipo-conta" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white h-[42px]">
+                                <option value="corrente">Conta Corrente</option>
+                                <option value="poupanca">Poupança</option>
+                                <option value="investimento">Investimento</option>
+                                <option value="carteira">Carteira Física</option>
+                                <option value="credito">Cartão de Crédito</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="container-campos-conta" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="fin-modal-saldo-inicial" class="block text-xs font-medium text-slate-400 mb-1">Saldo Inicial (R$)</label>
+                            <input type="text" inputmode="decimal" id="fin-modal-saldo-inicial" placeholder="Ex: 1000,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white">
+                        </div>
+                    </div>
+                    
+                    <div id="container-campos-credito" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="fin-modal-limite-cartao" class="block text-xs font-medium text-slate-400 mb-1">Limite do Cartão (R$)</label>
+                            <input type="text" inputmode="decimal" id="fin-modal-limite-cartao" placeholder="Ex: 5000,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white">
+                        </div>
+                        <div>
+                            <label for="fin-modal-dia-vencimento" class="block text-xs font-medium text-slate-400 mb-1">Dia Vencimento Fatura</label>
+                            <input type="number" id="fin-modal-dia-vencimento" placeholder="Ex: 10" min="1" max="31" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="fin-modal-icone-conta" class="block text-xs font-medium text-slate-400 mb-1">Ícone</label>
+                            <select id="fin-modal-icone-conta" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white h-[42px]">
+                                <option value="default">🏦 Genérico</option>
+                                <option value="nubank">🟣 Nubank</option>
+                                <option value="inter">🟠 Inter</option>
+                                <option value="itau">🟧 Itaú</option>
+                                <option value="bradesco">🟥 Bradesco</option>
+                                <option value="santander">🟥 Santander</option>
+                                <option value="bb">🟡 Banco do Brasil</option>
+                                <option value="caixa">🔵 Caixa</option>
+                                <option value="sicoob">🟢 Sicoob</option>
+                                <option value="xp">⚫ XP</option>
+                                <option value="c6">⚫ C6 Bank</option>
+                                <option value="invest">📈 Investimento</option>
+                                <option value="carteira">💵 Carteira Física</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-3 border-t border-slate-800">
+                        <label for="fin-modal-icone-url" class="block text-xs font-medium text-slate-400 mb-1">...ou URL do Ícone (Opcional)</label>
+                        <input type="text" id="fin-modal-icone-url" placeholder="Cole uma URL (http... ou data:image...) aqui" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white">
+                        <p class="text-xs text-slate-500 mt-1 italic">
+                            Se preenchido, isso substitui o ícone do menu acima. Tente usar links diretos para imagens (ex: .png).
+                        </p>
+                    </div>
+                    
+                    <button id="btn-adicionar-conta" class="w-full mt-2 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-bold py-2 px-4 rounded-lg transition highlight">Adicionar Conta</button>
+                </div>
+        </div>
+                    
+        
+
+                    <div id="fin-tab-content-relatorios" class="fin-tab-pane space-y-4 hidden">
+                                    <div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                                        <h3 class="text-xl font-bold text-center text-cyan-400">Relatórios Financeiros e Fiscais</h3>
+                                        
+                                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                            <div class="sm:col-span-1">
+                                                <label for="report-start-date" class="block text-xs font-medium text-slate-400 mb-1">Data Início</label>
+                                                <input type="date" id="report-start-date" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white h-[42px]">
+                                            </div>
+                                            <div class="sm:col-span-1">
+                                                <label for="report-end-date" class="block text-xs font-medium text-slate-400 mb-1">Data Fim</label>
+                                                <input type="date" id="report-end-date" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white h-[42px]">
+                                            </div>
+                                            <div class="sm:col-span-1 flex items-end">
+                                                <button id="btn-gerar-relatorio" class="w-full bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white font-bold py-2 px-4 rounded-lg transition highlight h-[42px]">Gerar Relat.</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex justify-center border-b border-slate-700 text-sm sm:text-base">
+                                        <button class="report-tab-button py-2 px-3 sm:px-4 font-semibold active" data-report-tab="dre">DRE (Gestão)</button>
+                                        <button class="report-tab-button py-2 px-3 sm:px-4 font-semibold" data-report-tab="livrocaixa">Livro-Caixa (PF)</button>
+                                        <button class="report-tab-button py-2 px-3 sm:px-4 font-semibold" data-report-tab="mei">Simulador IR (MEI)</button>
+                                    </div>
+
+                                    <div id="report-tab-content-dre" class="report-tab-pane p-4 bg-slate-900 rounded-lg space-y-3">
+                                        <h4 class="font-semibold text-slate-300 text-center mb-2">DRE (Demonstrativo de Resultados de Gestão)</h4>
+                                        <p class="text-xs text-slate-500 text-center -mt-3">
+                                            Baseado no fluxo de caixa operacional (Jornada -> Caixinhas Provisionadas).
+                                        </p>
+                                        <table id="dre-table" class="w-full text-sm">
+                                            <tbody id="dre-table-body">
+                                                </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div id="report-tab-content-livrocaixa" class="report-tab-pane p-4 bg-slate-900 rounded-lg space-y-3 hidden">
+                                        <h4 class="font-semibold text-slate-300 text-center mb-2">Livro-Caixa (Regime de Caixa)</h4>
+                                        <p class="text-xs text-slate-500 text-center -mt-3">
+                                            Baseado em pagamentos reais. Usado para o Carnê-Leão (PF) ou controle de PJ.
+                                        </p>
+                                        <table id="livrocaixa-table" class="w-full text-sm">
+                                            <tbody id="livrocaixa-table-body">
+                                                <tr class="border-b border-slate-700">
+                                                    <td class="py-2 font-medium text-slate-400">Total de Receitas (Serviços)</td>
+                                                    <td class="py-2 text-right font-bold text-green-400" id="lc-receita-bruta">R$ 0,00</td>
+                                                </tr>
+                                                <tr class="border-b border-slate-700">
+                                                    <td class="py-2 font-medium text-slate-400">(-) Total de Despesas Dedutíveis</td>
+                                                    <td class="py-2 text-right font-bold text-red-400" id="lc-despesas">(R$ 0,00)</td>
+                                                </tr>
+                                                <tr class="border-b-4 border-slate-700">
+                                                    <td class="py-2 font-bold text-white">(=) Lucro Tributável (Base de Cálculo)</td>
+                                                    <td class="py-2 text-right font-bold text-lg text-green-400" id="lc-lucro-tributavel">R$ 0,00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div id="report-tab-content-mei" class="report-tab-pane p-4 bg-slate-900 rounded-lg space-y-3 hidden">
+                                        <h4 class="font-semibold text-slate-300 text-center mb-2">Simulador de Imposto de Renda (MEI)</h4>
+                                        <p class="text-xs text-slate-500 text-center -mt-3">
+                                            Calcula seu rendimento tributável com base nas regras do MEI.
+                                        </p>
+                                        <table id="mei-table" class="w-full text-sm">
+                                            <tbody id="mei-table-body">
+                                                <tr class="border-b border-slate-700">
+                                                    <td class="py-2 font-medium text-slate-400">Faturamento Bruto Anual (Receitas)</td>
+                                                    <td class="py-2 text-right font-bold text-white" id="mei-faturamento-bruto">R$ 0,00</td>
+                                                </tr>
+                                                <tr class="border-b border-slate-700">
+                                                    <td class="py-2 pl-4 text-slate-400">(-) Despesas Comprovadas (Custos)</td>
+                                                    <td class="py-2 text-right font-bold text-red-400" id="mei-despesas">(R$ 0,00)</td>
+                                                </tr>
+                                                <tr class="border-b border-slate-600">
+                                                    <td class="py-2 font-bold text-white">(=) Lucro Evidenciado (Contábil)</td>
+                                                    <td class="py-2 text-right font-bold text-lg text-white" id="mei-lucro-evidenciado">R$ 0,00</td>
+                                                </tr>
+                                                
+                                                <tr class="border-b border-slate-700">
+                                                    <td class="py-2 font-medium text-slate-400">Parcela Isenta (Lucro Presumido)</td>
+                                                    <td class="py-2 text-right font-bold text-green-400" id="mei-parcela-isenta">R$ 0,00</td>
+                                                </tr>
+                                                <tr class="border-b-4 border-slate-700">
+                                                    <td class="py-2 font-bold text-white">(=) Rendimento Tributável (Para IRPF)</td>
+                                                    <td class="py-2 text-right font-bold text-lg text-amber-400" id="mei-rendimento-tributavel">R$ 0,00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <p class="text-xs text-slate-500 text-center pt-2">
+                                            <b>Atenção:</b> O "Rendimento Tributável" é o valor que você deve declarar na ficha "Rendimentos Tributáveis Recebidos de PJ" do seu IRPF (se obrigado a declarar).
+                                        </p>
+                                    </div>
+
+                    </div>
+   
+    </div>
+    
+        
+        <div id="tab-content-configuracoes" class="hidden space-y-6">
+            <div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                <h3 class="text-xl font-bold text-center text-cyan-400">Perfil do Motorista (Recibos)</h3>
+                <p class="text-xs text-slate-500 text-center">
+                    Estes dados serão usados para gerar recibos de viagens particulares.
+                </p>
+                <div class="space-y-3">
+                    <div>
+                        <label for="reciboNomeMotorista" class="block text-sm font-medium text-slate-300 mb-1">Seu Nome Completo</label>
+                        <input type="text" id="reciboNomeMotorista" placeholder="Ex: José da Silva" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="reciboDocumento" class="block text-sm font-medium text-slate-300 mb-1">Seu Documento (CPF ou CNH)</label>
+                            <input type="text" id="reciboDocumento" placeholder="Ex: 123.456.789-00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                        </div>
+                        <div>
+                            <label for="reciboPlacaVeiculo" class="block text-sm font-medium text-slate-300 mb-1">Placa do Veículo</label>
+                            <input type="text" id="reciboPlacaVeiculo" placeholder="Ex: ABC-1234" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                <h3 class="text-xl font-bold text-center text-cyan-400">Perfil Fiscal (Imposto de Renda)</h3>
+                <p class="text-xs text-slate-500 text-center -mt-3">
+                    Usado para os relatórios de Livro-Caixa e simulação de IR (MEI).
+                </p>
+                <div class="space-y-3">
+                    <div>
+                        <label for="config-tipo-declaracao" class="block text-sm font-medium text-slate-300 mb-1">Seu Regime Tributário</label>
+                        <select id="config-tipo-declaracao" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[53px]">
+                            <option value="pf">Pessoa Física (Autônomo - Carnê-Leão)</option>
+                            <option value="mei">PJ - MEI (Microempreendedor Individual)</option>
+                            <option value="pj">PJ - Outro (Simples, etc.)</option>
+                        </select>
+                    </div>
+
+                    <div id="container-config-mei" class="hidden space-y-3 pt-3 border-t border-slate-700">
+                        <h4 class="text-mb font-semibold text-center text-slate-300">Configurações do MEI</h4>
+                        <div>
+                            <label for="config-mei-percentual" class="block text-sm font-medium text-slate-300 mb-1 " >Percentual de Isenção (Lucro Presumido)</label>
+                            <select id="config-mei-percentual" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[53px]">
+                                <option value="16">16% (Transporte de Passageiros)</option>
+                                <option value="32">32% (Prestação de Serviços em Geral / Entrega)</option>
+                                <option value="8">8% (Comércio, Indústria, Transporte de Cargas)</option>
+                            </select>
+                            <p class="text-xs text-slate-500 mt-1 italic">
+                                Verifique com seu contador qual se aplica. "Transporte de Passageiros" é 16%. "Serviços de entrega" (não carga) geralmente é 32%.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                <h3 class="text-xl font-bold text-center text-cyan-400">Metas e Projeções</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="proLaboreInput" class="block text-sm font-medium text-slate-300 mb-1">Pró-labore Mensal (R$)</label>
+                        <input type="text" inputmode="decimal" id="proLaboreInput" placeholder="Ex: 5000,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                        
+                    </div>
+                    <div>
+                    <div class="col-span-1">
+        <label for="proLaboreDiaInput" class="block text-sm font-medium text-slate-300 mb-1">Dia Pag.</label>
+        <input type="number" id="proLaboreDiaInput" placeholder="Dia" min="1" max="31" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition text-center">
+    </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-1 gap-3">
+
+                
+                          
+                                    <div class="rid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <label for="metaAutonomaInput" class="block text-sm font-medium text-slate-300 mb-1">Meta de Ganhos Diária (R$)</label>
+                                            <input type="text" inputmode="decimal" id="metaAutonomaInput" placeholder="Ex: 400,00 (Opcional)" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                                         
+                                             
+                                            <div>
+    <label class="block text-sm p-3 font-medium text-slate-300 mb-2">Dias de Trabalho (Selecione)</label>
+    <div id="selectorDiasTrabalho" class="flex justify-between gap-1 bg-slate-700/50 p-3 rounded-lg border border-slate-600">
+        <button type="button" data-dia="0" class="btn-dia-semana w-8 h-8 rounded-full text-xs font-bold transition flex items-center justify-center bg-slate-600 text-slate-400">Dom</button>
+        <button type="button" data-dia="1" class="btn-dia-semana w-8 h-8 rounded-full text-xs font-bold transition flex items-center justify-center bg-slate-600 text-slate-400">Seg</button>
+        <button type="button" data-dia="2" class="btn-dia-semana w-8 h-8 rounded-full text-xs font-bold transition flex items-center justify-center bg-slate-600 text-slate-400">Ter</button>
+        <button type="button" data-dia="3" class="btn-dia-semana w-8 h-8 rounded-full text-xs font-bold transition flex items-center justify-center bg-slate-600 text-slate-400">Qua</button>
+        <button type="button" data-dia="4" class="btn-dia-semana w-8 h-8 rounded-full text-xs font-bold transition flex items-center justify-center bg-slate-600 text-slate-400">Qui</button>
+        <button type="button" data-dia="5" class="btn-dia-semana w-8 h-8 rounded-full text-xs font-bold transition flex items-center justify-center bg-slate-600 text-slate-400">Sex</button>
+        <button type="button" data-dia="6" class="btn-dia-semana w-8 h-8 rounded-full text-xs font-bold transition flex items-center justify-center bg-slate-600 text-slate-400">Sab</button>
+    </div>
+    <input type="hidden" id="diasTrabalhoSemanaInput"> </div>
+                                    </div>         
+                          
+                           
+                          
+
+                    
+                    <div class="flex items-center gap-3 pt-2">
+                        <input type="checkbox" id="incluirPrevisaoManutencao" class="h-4 w-4 rounded bg-slate-700 border-slate-600 text-cyan-600 focus:ring-cyan-500">
+                        <label for="incluirPrevisaoManutencao" class="text-sm text-slate-400">Incluir Previsão de Manutenção nos Custos Diários</label>
+                    </div>
+                    <p class="text-xs text-slate-500 italic">
+                        (Requer "Meta de KM Diária" e o "Plano Mestre" com "Histórico de Custos" preenchidos para funcionar)
+                    </p>                      
+                    <div>
+                        <label for="kmMetaDiariaInput" class="block text-sm font-medium text-slate-300 mb-1">KM Meta Diária (Para Previsibilidade)</label>
+                        <input type="number" id="kmMetaDiariaInput" placeholder="Ex: 100" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="rateioDinamicoCustos" class="toggle-switch">
+                                <label for="rateioDinamicoCustos" class="toggle-label"></label>
+                            </div>
+                            <label for="rateioDinamicoCustos" class="text-sm text-slate-300">
+                                Provisionamento Dinâmico (Acumulativo)?
+                                <span class="block text-xs text-slate-500">Se ligado, o custo diário das caixinhas aumenta para compensar dias não trabalhados.</span>
+                            </label>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 pt-2 sm:col-span-2">
+                    <input type="checkbox" id="manterCalculoKmAntigo" class="h-4 w-4 rounded bg-slate-700 border border-slate-600 text-cyan-600 focus:ring-cyan-500">
+                    <label for="manterCalculoKmAntigo" class="text-sm text-slate-400">Manter cálculo antigo de "KM Lata" (Não subtrair KM Otimizado do Produtivo)</label>
+
+
+               </div>               <div class="flex items-center justify-between p-3 bg-slate-800 rounded border border-slate-700 mt-2">
+    <div class="flex flex-col">
+        <span class="text-sm text-slate-300 font-bold">Ativar Custo Dinâmico por KM</span>
+        <span class="text-[10px] text-slate-500">Marcado: Custo do combustivel baseia-se no consumo (KM rodado).<br>Desmarcado: Custo é igual ao valor pago no posto.</span>
+    </div>
+    <input type="checkbox" id="chk-usar-custo-dinamico" 
+        class="form-checkbox h-5 w-5 text-cyan-600 bg-slate-700 border-slate-600 rounded focus:ring-0"
+        onchange="AppState.configuracoes.usarCustoDinamico = this.checked; Storage.salvarConfiguracoes(); UIRenderer.showToast('Modo de cálculo alterado.');"
+        ${AppState.configuracoes.usarCustoDinamico ? 'checked' : ''}>
+</div>
+                <p class="text-xs text-slate-500 text-center sm:col-span-2">Estes valores serão usados para calcular sua meta diária de ganhos.</p>
+                                            <div class="flex items-center gap-3 pt-4 border-t border-slate-700/50 mt-4">
+                    <input type="checkbox" id="usarGpsTracking" class="h-4 w-4 rounded bg-slate-700 border-slate-600 text-cyan-600 focus:ring-cyan-500">
+                    <label for="usarGpsTracking" class="text-sm text-slate-400">Rastrear KM automaticamente (usar GPS)</label>
+                                    <p class="text-xs text-slate-500 italic">
+                    (Requer permissão de localização e pode consumir mais bateria. Desative se preferir inserir o KM manualmente.)
+                </p>
+
+                </div>
+            </div>
+
+            <div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                <h3 class="text-xl font-bold text-center text-cyan-400">Gestão do Veículo</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label for="valorVeiculo" class="block text-sm font-medium text-slate-300 mb-1">Valor de Compra (R$)<p class="text-xs text-slate-500 text-center mt-4">A depreciação será calculada com base no valor de compra e vida útil, e diluída como um custo diário.</p></label>
+                        <input type="text" inputmode="decimal" id="valorVeiculo" placeholder="Ex: 60.000,00" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-3 focus:ring-cyan-500 focus:outline-none transition">
+                    </div>
+                    <div id="vidaUtilContainer">
+                        <label for="vidaUtilVeiculo" class="block text-sm font-medium text-slate-300 mb-1">Vida Útil (Anos)</label>
+                        <input type="text" id="vidaUtilVeiculo" placeholder="Padrão: 5" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                                        
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                    <div>
+                        <label for="autonomiaVeiculoInput" class="block text-sm font-medium text-slate-300 mb-1">Autonomia do Veículo (KM/L ou KM/kWh)</label>
+                        <input type="text" inputmode="decimal" id="autonomiaVeiculoInput" placeholder="Ex: 14,5" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                    </div>
+                    <div>
+                        <label for="tipoCombustivelSelect" class="block text-sm font-medium text-slate-300 mb-1">Combustível Principal</label>
+                        <select id="tipoCombustivelSelect" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                            <option>Gasolina Comum</option>
+                            <option>Gasolina Aditivada</option>
+                            <option>Gasolina Premium</option>
+                            <option>Etanol Comum</option>
+                            <option>Etanol Aditivado</option>
+                            <option>Diesel Comum</option>
+                            <option>Diesel Premium</option>
+                            <option>GNV</option>
+                            <option>Híbrido</option>
+                            <option>Híbrido Plug-in</option>
+                            <option>Elétrico</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                <h3 class="text-xl font-bold text-center text-cyan-400">Subcategorias de Serviço</h3>
+                <div class="space-y-3 p-3 bg-slate-800 rounded-md">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-end">
+                        <div class="flex-grow">
+                            <label for="subcategoriaDescricaoInput" class="block text-xs font-medium text-slate-400 mb-1">Nome da Subcategoria</label>
+                            <input type="text" id="subcategoriaDescricaoInput" placeholder="Ex: Uber, 99 Pop" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition">
+                        </div>
+                        <div class="flex items-end gap-3">
+                            <div class="flex-grow">
+                                <label for="subcategoriaPaiSelect" class="block text-xs font-medium text-slate-400 mb-1">Categoria Principal</label>
+                                <select id="subcategoriaPaiSelect" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2 text-white focus:ring-2 focus:ring-cyan-500 focus:outline-none transition h-[42px]">
+                                    <option>Corrida</option>
+                                    <option>Entrega</option>
+                                    <option>Outro</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="subcategoriaCorInput" class="block text-xs font-medium text-slate-400 mb-1">Cor</label>
+                                <input type="color" id="subcategoriaCorInput" value="#818cf8">
+                            </div>
+                        </div>
+                    </div>
+                    <button id="btnAdicionarSubcategoria" class="w-full mt-2 bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300 highlight">Adicionar Subcategoria</button>
+                </div>
+                <div id="listaSubcategoriasContainer" class="p-3 bg-slate-800 rounded-md">
+                    <h4 class="font-semibold text-slate-300 text-center mb-2">Subcategorias Adicionadas</h4>
+                    <ul id="listaSubcategorias" class="space-y-2 max-h-40 overflow-y-auto scrollable-content"></ul>
+                </div>
+            </div>
+
+
+            <div class="p-4 bg-slate-900 rounded-lg space-y-4">
+                <h3 class="text-xl font-bold text-center text-cyan-400">Backup de Dados</h3>
+                <p class="text-xs text-slate-500 text-center">Salve todos os seus dados em um arquivo ou restaure um backup anterior.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button id="btnExportarDados" class="w-full bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-700 hover:to-sky-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300 highlight">Exportar Dados</button>
+                    <label for="importFileInput" class="w-full bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300 highlight text-center cursor-pointer">
+                        Importar Dados
+                    </label>
+                    <input type="file" id="importFileInput" accept=".json,application/json">
+                </div>
+            </div>
+
+            <button id="btnSalvarConfiguracoes" class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300 highlight">Salvar Configurações</button>
+        </div>
+    </main>
+
+<div id="visualSettingsModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+    <div class="bg-primary w-full max-w-md p-6 rounded-lg shadow-xl card space-y-4 max-h-[90vh] overflow-y-auto scrollable-content">
+        <div class="flex justify-between items-center">
+            <h3 class="text-xl font-bold text-cyan-400">Personalização Visual</h3>
+            <button data-close-modal="visualSettingsModal" class="text-secondary hover:text-primary text-2xl">&times;</button>
+        </div>
+
+        <div class="space-y-2">
+            <label class="block text-sm font-medium text-secondary">Tema do Aplicativo</label>
+            <div class="grid grid-cols-3 gap-3">
+                <div>
+                    <input type="radio" name="theme" id="theme-dark" value="theme-dark" class="theme-radio">
+                    <label for="theme-dark" class="theme-radio-label text-center block">
+                        <span class="font-semibold text-primary">Escuro</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="theme" id="theme-light" value="theme-light" class="theme-radio">
+                    <label for="theme-light" class="theme-radio-label text-center block">
+                        <span class="font-semibold text-primary">Claro</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="theme" id="theme-custom" value="theme-custom" class="theme-radio">
+                    <label for="theme-custom" class="theme-radio-label text-center block">
+                        <span class="font-semibold text-primary">Pessoal</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <div id="customColorPickerContainer" class="hidden space-y-3 pt-3 border-t border-border-color fade-in">
+            <h4 class="text-lg font-semibold text-secondary text-center">Cores Personalizadas</h4>
+            <p class="text-xs text-tertiary text-center -mt-2">Baseado no Tema Escuro</p>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <div class="flex flex-col items-center">
+                    <label for="custom-color-cyan" class="block text-xs font-medium text-secondary mb-1">Cor de Destaque</label>
+                    <input type="color" id="custom-color-cyan" value="#22d3ee" class="color-picker-input">
+                </div>
+                <div class="flex flex-col items-center">
+                    <label for="custom-text-primary" class="block text-xs font-medium text-secondary mb-1">Texto Principal</label>
+                    <input type="color" id="custom-text-primary" value="#e2e8f0" class="color-picker-input">
+                </div>
+                <div class="flex flex-col items-center">
+                    <label for="custom-bg-primary" class="block text-xs font-medium text-secondary mb-1">Fundo Principal</label>
+                    <input type="color" id="custom-bg-primary" value="#1e293b" class="color-picker-input">
+                </div>
+                <div class="flex flex-col items-center">
+                    <label for="custom-bg-secondary" class="block text-xs font-medium text-secondary mb-1">Fundo Secundário</label>
+                    <input type="color" id="custom-bg-secondary" value="#0f172a" class="color-picker-input">
+                </div>
+            </div>
+        </div>
+        <div class="space-y-2 pt-3 border-t border-border-color">
+            <label class="block text-sm font-medium text-secondary">Tamanho da Fonte</label>
+            <div class="grid grid-cols-3 gap-3">
+                <div>
+                    <input type="radio" name="font-size" id="font-size-sm" value="font-size-sm" class="theme-radio">
+                    <label for="font-size-sm" class="theme-radio-label text-center block">
+                        <span class="font-semibold text-primary text-xs">Pequena</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="font-size" id="font-size-base" value="font-size-base" class="theme-radio">
+                    <label for="font-size-base" class="theme-radio-label text-center block">
+                        <span class="font-semibold text-primary text-base">Média</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="font-size" id="font-size-lg" value="font-size-lg" class="theme-radio">
+                    <label for="font-size-lg" class="theme-radio-label text-center block">
+                        <span class="font-semibold text-primary text-lg">Grande</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-2">
+            <label class="block text-sm font-medium text-secondary">Espaçamento (Padding)</label>
+            <div class="grid grid-cols-3 gap-3">
+                <div>
+                    <input type="radio" name="padding" id="padding-sm" value="padding-sm" class="theme-radio">
+                    <label for="padding-sm" class="theme-radio-label text-center block">
+                        <span class="font-semibold text-primary text-sm">Compacto</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="padding" id="padding-base" value="padding-base" class="theme-radio">
+                    <label for="padding-base" class="theme-radio-label text-center block">
+                        <span class="font-semibold text-primary text-sm">Padrão</span>
+                    </label>
+                </div>
+                <div>
+                    <input type="radio" name="padding" id="padding-lg" value="padding-lg" class="theme-radio">
+                    <label for="padding-lg" class="theme-radio-label text-center block">
+                        <span class="font-semibold text-primary text-sm">Amplo</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+<div class="space-y-2 pt-3 border-t border-slate-700">
+    <label class="flex items-center space-x-3 cursor-pointer">
+        <input type="checkbox" id="vs-show-icons" class="h-5 w-5 rounded bg-slate-700 border-slate-600 text-cyan-600 focus:ring-cyan-500">
+        <span class="text-sm font-medium text-slate-300">Usar Ícones nos Cards (em vez de texto)</span>
+    </label>
+</div>
+        <div class="flex justify-end gap-3 pt-3">
+            <button data-close-modal="visualSettingsModal" class="bg-hover text-primary font-bold py-2 px-4 rounded-lg transition">Fechar</button>
+            <button id="btnSalvarVisualSettings" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Salvar e Aplicar</button>
+        </div>
+    </div>
+</div>
+    <div id="modalContainer" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+    </div>
+<script src="ScriptCompleto.js"></script>
+<!--<script src="okl.js"></script>-->
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('✅ Service Worker registrado com sucesso!'))
+      .catch(err => console.error('❌ Falha ao registrar SW:', err));
+  }
+</script>
+</body>
+</html>
